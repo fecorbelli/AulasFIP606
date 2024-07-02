@@ -1,0 +1,5 @@
+"0","exp2 |> "
+"0","  ggplot(aes(log(trat), nplants))+"
+"0","  geom_point()+"
+"0","  ylim(0,100)+"
+"0","  geom_smooth(se = F)"

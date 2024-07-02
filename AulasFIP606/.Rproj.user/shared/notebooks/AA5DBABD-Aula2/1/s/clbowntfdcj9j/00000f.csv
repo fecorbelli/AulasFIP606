@@ -1,0 +1,4 @@
+"0","df2 <- read_excel(""dados-diversos.xlsx"")
+"
+"2","Erro: `path` does not exist: ‘dados-diversos.xlsx’
+"

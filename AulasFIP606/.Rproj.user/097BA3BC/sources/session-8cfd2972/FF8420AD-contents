@@ -1,0 +1,242 @@
+---
+title: "Aula 8"
+format: html
+editor: visual
+---
+
+# Anova em blocos
+
+### Importação conjunto de dados
+
+```{r}
+library(tidyverse)
+library(gsheet)
+
+soja <- gsheet2tbl("https://docs.google.com/spreadsheets/d/1bq2N19DcZdtax2fQW9OHSGMR0X2__Z9T/edit#gid=866852711")
+```
+
+Para considerar o bloco como um fator devemos utilizar a função `mutate()`.
+
+```{r}
+soja <- soja %>% 
+  mutate(TRAT = as.factor(TRAT),
+         BLOCO = as.factor(BLOCO))
+```
+
+### Visualização inicial
+
+```{r}
+library(Hmisc)
+
+dfc <- soja %>%
+  ggplot(aes(TRAT, DFC)) +
+  geom_jitter(width = 0.05, color = "gray70") +
+  stat_summary(fun.data = "mean_cl_boot", color = "black")
+
+fer <- soja %>% 
+  ggplot(aes(TRAT, FER))+
+  geom_jitter(width = 0.05, color = "gray70") +
+  stat_summary(fun.data = "mean_cl_boot", color = "black")
+
+prod <- soja %>% 
+  ggplot(aes(TRAT, PROD))+
+  geom_jitter(width = 0.05, color = "gray70") +
+  stat_summary(fun.data = "mean_cl_boot", color = "black")
+
+library(patchwork)
+# juntar os gráficos
+(dfc | fer | prod)
+```
+
+### Anova variável DFC
+
+No execução da ANOVA devemos considerar o bloco como elemento da análise "+ BLOCO".
+
+```{r}
+
+aov_dfc <- lm(DFC ~ TRAT + BLOCO,
+              data = soja)
+
+anova(aov_dfc)
+# o bloco não tem efeito, mas deve ser levado em considração
+
+```
+
+#### Verificação das premissas e discriminação dos grupos
+
+```{r}
+library(performance)
+
+check_normality(aov_dfc)
+check_heteroscedasticity(aov_dfc)
+
+library(emmeans)
+medias_dfc <- emmeans(aov_dfc, ~ TRAT) 
+
+medias_dfc
+pwpm (medias_dfc)
+
+library(multcomp)
+cld (medias_dfc,Letters = LETTERS)
+```
+
+### Anova variável FER
+
+```{r}
+aov_fer <- lm(FER ~ TRAT + BLOCO,
+              data = soja)
+
+anova(aov_fer)
+```
+
+#### Verificação das premissas e discriminação dos grupos
+
+```{r}
+library(performance)
+check_normality(aov_fer)
+check_heteroscedasticity(aov_fer)
+
+library(DHARMa)
+plot(simulateResiduals(aov_fer))
+
+library(emmeans)
+medias_fer <- emmeans(aov_fer, ~ TRAT) 
+
+medias_fer
+pwpm (medias_fer)
+
+library(multcomp)
+cld (medias_fer,Letters = LETTERS)
+```
+
+#### Transformação variável FER
+
+```{r}
+library(MASS)
+b <- boxcox(lm(soja$FER ~ 1))
+lambda <- b$x[which.max(b$y)]
+lambda
+
+soja$FER2 <- (soja$FER ^ lambda - 1 / lambda)
+
+aov_fer2 <- lm(FER2 ~ TRAT + BLOCO,
+              data = soja)
+
+anova(aov_fer2)
+```
+
+#### Verificação das premissas e discriminação dos grupos com os dados transformados
+
+```{r}
+library(performance)
+check_normality(aov_fer2)
+check_heteroscedasticity(aov_fer2)
+
+library(DHARMa)
+plot(simulateResiduals(aov_fer2))
+
+library(emmeans)
+medias_fer2 <- emmeans(aov_fer2, ~ TRAT) 
+
+medias_fer2
+
+library(multcomp)
+cld (medias_fer2,Letters = LETTERS)
+
+```
+
+### Anova variável produção
+
+```{r}
+aov_prod <- lm(PROD ~ TRAT + BLOCO,
+              data = soja)
+
+anova(aov_prod)
+```
+
+#### Verificação das premissas e discriminação dos grupos
+
+```{r}
+library(performance)
+check_normality(aov_prod)
+check_heteroscedasticity(aov_prod)
+
+library(emmeans)
+medias_prod <- emmeans(aov_prod, ~ TRAT) 
+
+medias_prod
+pwpm (medias_prod)
+
+library(multcomp)
+medias_prod_grupo <- cld (medias_prod,Letters = LETTERS)
+
+
+```
+
+#### Visualização produção
+
+```{r}
+
+df_prod <- data.frame(medias_prod_grupo)
+
+df_prod %>% 
+ggplot(aes(TRAT, emmean)) +
+  geom_point() +
+  ylim(2000,6500) +
+  geom_errorbar(aes(min = lower.CL,
+                    max = upper.CL),
+                width = 0.1) +
+  annotate(geom = "text", x = 1.1, y = 4200,
+           label = "A")
+
+knitr::kable(df_prod %>% dplyr::select(TRAT, emmean, .group))
+
+```
+
+### Importação de outro conjunto de dados
+
+```{r}
+library(gsheet)
+
+curv <- gsheet2tbl("https://docs.google.com/spreadsheets/d/1bq2N19DcZdtax2fQW9OHSGMR0X2__Z9T/edit#gid=1807247585")
+```
+
+### Sumarização e Visualização
+
+```{r}
+
+curv %>% 
+  group_by(Irrigation) %>% 
+  summarise(sev_mean = mean(severity),sev_med = median(severity), sd_mean = sd(severity))
+
+
+curv %>% 
+  group_by(day, Irrigation) %>% 
+  summarise(sev_mean = mean(severity)) %>% 
+  ggplot(aes(day,sev_mean)) +
+  theme_bw() +
+  geom_point(whith = 0.05) +
+  geom_line() + 
+  facet_wrap(~~Irrigation)
+
+
+
+```
+
+## Cálculo da área abaixo da curva de progresso da doença (AUDPC)
+
+A AUDPC é uma medida utilizada para quantificar e comparar o progresso de doenças em plantas ao longo do tempo. A curva do progresso da doença apresenta o tempo no eixo x e a variável de interesse no eixo y. Utilizamos o elemento `AUDPC()` na camada summarise.
+
+```{r}
+library(epifitter)
+curv2 <- curv %>% 
+  group_by(Irrigation, rep) %>% 
+  summarise(aacpd = AUDPC(day, severity))
+
+
+m_curv <- lm(aacpd ~ Irrigation + factor(rep),
+          data = curv2)
+
+library (agricolae)
+cv.model(m_curv)
+```

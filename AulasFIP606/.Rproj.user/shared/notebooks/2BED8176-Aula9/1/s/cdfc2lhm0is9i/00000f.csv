@@ -1,0 +1,8 @@
+"0","exp2 <- estande %>% "
+"0","  filter(exp == 2)"
+"0",""
+"0","exp2 %>% "
+"0","  ggplot (aes(trat, nplants)) +"
+"0","  geom_point() +"
+"0","  ylim(0,100) +"
+"0","  geom_smooth(se = F) "

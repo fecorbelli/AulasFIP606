@@ -1,0 +1,7 @@
+"0","library(tidyverse)
+library(gsheet)
+milho <- gsheet2tbl(""https://docs.google.com/spreadsheets/d/1bq2N19DcZdtax2fQW9OHSGMR0X2__Z9T/edit#gid=1345524759"")
+```
+"
+"2","Erro: tentativa de usar um nome de variável com comprimento zero
+"

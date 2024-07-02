@@ -1,0 +1,8 @@
+"0",""
+"0","#se = F -> tira a barra de intervalo de confiança"
+"0",""
+"0","estande %>%  "
+"0","  ggplot(aes(trat, nplants, color = factor(exp)))+"
+"0","  geom_jitter(width = 0.1, color = ""gray"")+"
+"0","  stat_summary(fun.data = ""mean_cl_boot"", color = ""blue"")+"
+"0","  geom_smooth(method = ""lm"", se = F)"
