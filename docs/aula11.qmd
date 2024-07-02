@@ -1,0 +1,172 @@
+---
+title: "Aula 11"
+format: html
+editor: visual
+message: false
+warning: false
+---
+
+# Criando Mapas
+
+### Instalação de pacote do github
+
+```{r}
+library(rnaturalearth)
+library(remote)
+remotes::install_github("ropensci/rnaturalearthhires")
+
+install.packages("rnaturalearthhires", repos = "https://ropensci/rnaturalearthhires")
+```
+
+### Plotagem no mapa
+
+Para plotar os paises utilizamos `ne_countries()` e para plotar os estados utilizamos `ne_states()`
+
+```{r}
+library(rnaturalearthhires)
+
+BRA <- ne_states(country = "Brazil",
+                 returnclass = "sf")
+
+word <- ne_countries()
+
+library(tidyverse)
+
+ggplot(BRA) +
+  geom_sf(fill = "white",
+          color = "green",
+          linewidth = 1)
+```
+
+## Mapas com pontos de coordenadas
+
+Para retirar a grade do fundo utilizamos o theme_map.
+
+```{r}
+library(r4pde)
+
+sbr <- RustSoybean
+
+sbr |> 
+  ggplot(aes(longitude, latitude))+
+  geom_point()+
+  coord_sf()
+
+ggplot(BRA)+
+  geom_sf(fill = "white",
+          color = "yellow",
+          linewidth = 1)+
+  geom_point(data = sbr, aes(longitude,latitude),
+             color = "black")
+
+library(ggthemes)
+
+ggplot(BRA)+
+  geom_sf(fill = "white",
+          color = "yellow",
+          linewidth = 1)+
+  geom_point(data = sbr, aes(longitude,latitude),
+             color = "black")+
+  theme_map()
+```
+
+## Selecionar um estado
+
+```{r}
+MG <- BRA |> 
+  filter(name_en == "Minas Gerais")
+
+ggplot(BRA)+
+  geom_sf(fill = "white",
+          color = "yellow",
+          linewidth = 1)+
+  geom_sf(data = MG, fill = "green")+
+  geom_point(data = sbr, aes(longitude,latitude), color = "red")+
+  theme_map()
+
+# Se quiser só os pontos e MG
+ggplot(BRA)+
+    geom_sf(data = MG, fill = "green")+
+  geom_point(data = sbr, aes(longitude,latitude), color = "red")+
+  theme_map()
+```
+
+## Adicionar rosa dos ventos
+
+Utilizamos `annotation_north_arrow()` para adicionar o posicionamento do norte no mapa.
+
+```{r}
+library(ggspatial)
+
+bra <- ggplot(BRA)+
+  geom_sf(fill = "lightblue",
+          color = "black",
+          linewidth = 0.1)+
+  geom_point(data = sbr, aes(longitude,latitude), color = "darkblue")+
+  theme_map()+
+  annotation_north_arrow() 
+```
+
+# Construção de mapas interativos
+
+```{r}
+library(plotly)
+ggplotly(bra)
+
+```
+
+## Personalização do mapa interativo
+
+```{r}
+library(leaflet)
+leaflet() |> 
+  addTiles()
+
+# localização específica - Viçosa
+leaflet() |> 
+  addTiles() |> 
+  setView(lng = -42.8825, lat = -20.7546, zoom = 15) 
+
+# Outro modelo
+leaflet() |> 
+  addProviderTiles(providers$Esri.NatGeoWorldMap) |> 
+  setView(lng = -42.8825, lat = -20.7546, zoom = 5) 
+
+#Adicionando os pontos
+leaflet(sbr) |> 
+  addTiles() |> 
+  setView(lng = -42.8825, lat = -20.7546, zoom = 5) |> 
+  addCircleMarkers(radius = 1)
+
+leaflet(sbr) |> 
+  addTiles() |> 
+  addCircleMarkers(radius = 1) 
+```
+
+# Mapa com presença por ponto
+
+```{r}
+library(gsheet)
+
+mapa <- gsheet2tbl("https://docs.google.com/spreadsheets/d/1pAIFKsdKxk_UQQXdYwIO-O5NOkYNhpclImJcLziYnk4/edit?usp=sharing")
+
+library(scatterpie)
+library(ggrepel)
+
+ggplot(BRA) +
+  geom_sf(fill = "gray70", alpha = 0.5, color = "white") +
+  coord_sf()+
+  geom_scatterpie(aes(x = lon, y = lat, r = 0.6), alpha = 0.8, color = NA, data = mapa,
+                  cols = c("DFC",
+                           "MA",
+                           "FER",
+                           "ANTR",
+                           "OIDIO"))+
+  geom_text_repel(data = mapa, aes(lon, lat, label = Local),
+                   size = 2, nudge_x = 0.2, nudge_y = 0.27, color = "gray30", family = "Arial") +
+  ggthemes::scale_fill_calc()+
+  ggthemes::theme_map() +
+  labs(x = "Longitude", y = "Latitude", legend = "", fill = "Doença")+
+  theme(legend.position = "bottom", text = element_text(family = "Arial", size = 8))
+
+```

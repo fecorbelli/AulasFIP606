@@ -1,8 +1,15 @@
 project:
   type: website
-
+  output-dir: docs
+  
+execute:
+    cache: true
+    freeze: auto
+    warning: false
+    
 website:
   title: "Aulas FIP606"
+  
   navbar:
     left:
       - text: Básico do R
@@ -41,7 +48,8 @@ website:
 
 format:
   html:
-    theme: cosmo
+    theme: superhero
+    dark: slate
     css: styles.css
     toc: true
 

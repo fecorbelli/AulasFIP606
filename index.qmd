@@ -1,11 +1,10 @@
 ---
-title: "AulasFIP606"
+title: "Bem-vindo ao meu website!"
 ---
 
-This is a Quarto website.
+Eu me chamo Fernanda Corbelli de Magalhães e possuo graduação em Engenharia Agronômica pela Universidade Federal de Viçosa. Atualmente sou mestranda do programa de pós-graduação em Fitopatologia da mesma instituição. 
 
-To learn more about Quarto websites visit <https://quarto.org/docs/websites>.
+Este website foi criado para a disciplina FIP606 - Análise e visualização de dados em Fitopatologia, ministrada pelo professor Emerson Del Ponte.
+Neste site, você encontrará o material das aulas ministradas organizados em tópicos.
 
-```{r}
-1 + 1
-```
+

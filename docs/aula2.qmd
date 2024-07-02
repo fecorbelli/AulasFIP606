@@ -1,0 +1,85 @@
+---
+title: "Aula2"
+format: html
+editor: visual
+message: false
+warning: false
+---
+
+# Importando dados
+
+## Pacotes
+
+Alguns pacotes apresentam diferentes conjuntos de dados que podem ser utilizados. Para utilizá-los, basta baixar o pacote, ativar o mesmo e criar um objeto com o conjunto de dados do pacote que você quer trabalhar.
+
+```{r}
+library(ec50estimator)
+df1 <- multi_isolate
+```
+
+## Arquivo Excel
+
+Para a importação de dados que estão em um arquivo excel devemos utilizar a função read_excel do pacote readxl. O comando será: read_excel("nome do arquivo").
+
+```{r}
+
+library(readxl)
+df2 <- read_excel("dados-diversos.xlsx")
+df21 <- read_excel("dados-diversos.xlsx",sheet = "armazena")
+
+```
+
+## Arquivo CSV
+
+Para a importação de dados que estão em um arquivo csv utilizamos a função read_csv do pacote tidyverse. O comando será: read_csv("nome do arquivo").
+
+```{r}
+library(tidyverse)
+df3 <- read_csv("dados-diversos.csv")
+```
+
+## Planilha Google
+
+Para a importação de dados que estão em uma planilha google utilizamos a função gsheet2tbl do pacote gsheet. O comando será: gsheet2tb1("endereço na web").
+
+```{r}
+library(gsheet)
+df4 <- gsheet2tbl ("https://docs.google.com/spreadsheets/d/1bq2N19DcZdtax2fQW9OHSGMR0X2__Z9T/edit?gid=959387827#gid=959387827")
+```
+
+# Visualização de Dados
+
+## Gráficos em ggplot
+
+Podemos utilizar a biblioteca ggplot2 para vizualizar dados. A função necessária nesse caso é a ggplot. A programação de gráficos em ggplot2 é feito na forma de camadas, que são adicionadas à medida que se confecciona o gráfico.
+
+A função `geom_jitter()` irá criar um gráfico de pontos, sendo que esses pontos serão plotados de forma dispersa para não haver sobreposição de dados. Já a função `geom_boxplot()` irá criar um gráfico do tipo boxplot com os dados. Utilizamos "color =" para definir a coloração dos pontos, "shape =" para definir o formato e "size =" para definir o tamanho. A função `outlier.colour = NA`é utilizada para que os pontos outlier não apareçam no boxplot.
+
+```{r}
+library(ggplot2)
+
+df4 %>% 
+  ggplot(aes(especie,tcm))+
+  geom_jitter(width = 0.05, color = "black", shape = 2, size = 3)+
+  geom_boxplot()
+
+library(ggplot2)
+g2 <- df4 %>% 
+  ggplot(aes(especie,tcm))+
+  geom_boxplot(outlier.colour = NA, fill = "green")+
+  geom_jitter(width = 0.05, color = "black", shape = 2, size = 3)
+```
+
+Para adicionar anotações ao gráfico utilizamos a função `labs()`.
+
+```{r}
+g2 + theme_classic() + labs(x="tratamento", y= "comprimento (nm)", title= "meu primeiro ggplot", caption="fonte: Dados diversos") + scale_y_continuous(limits = c(0,2))
+
+g2 + theme_classic() + labs(x="tratamento", y= "comprimento (nm)", title= "meu primeiro ggplot", caption="fonte: Dados diversos") + ylim(0,1.5)
+```
+
+Para salvar o gráfico, utilizamos a função `ggsave()`.
+
+```{r}
+ggsave("plot1.png", bg= "white")
+```
