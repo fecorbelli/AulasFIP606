@@ -2,8 +2,8 @@
 title: "Aula2"
 format: html
 editor: visual
-editor_options: 
-  chunk_output_type: inline
+message: false
+warning: false
 ---
 
 # Importando dados

@@ -2,6 +2,8 @@
 title: "aula 9"
 format: html
 editor: visual
+message: false
+warning: false
 ---
 
 ## Modelo misto

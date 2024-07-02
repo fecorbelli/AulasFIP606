@@ -2,12 +2,13 @@
 title: "Aula5"
 format: html
 editor: visual
+message: false
+warning: false
 ---
 
 # Avaliação do desempenho dos alunos nas sabatinas de FIP606
 
-O documento tem por objtivo descrever e ilustrar o desempenho geral dos estudantes matriculados na disciplina FIP606 
-
+O documento tem por objtivo descrever e ilustrar o desempenho geral dos estudantes matriculados na disciplina FIP606
 
 ## Importando os dados
 
@@ -44,8 +45,8 @@ sab %>%
   group_by(prova) %>% 
   summarise(nota_mean = mean(nota),nota_med = median(nota), sd_mean = sd(nota), nota_max = max(nota), min_nota = min(nota))
 ```
-A média das notas obtidas pelos alunos na sabatina 1 foi de 79,55 e os valores variaram entre 42,90 e 100,00. Os valores encontrados na sabatina 2 foram semelhantes, em que a média amostral foi de 79,26 e os valores variaram entre 43,75 e 100. O desvio padrão de ambas as provas também foi semelhante com valor de 19,00 e 19,71, na primeira e segunda sabatina respectivamente.
 
+A média das notas obtidas pelos alunos na sabatina 1 foi de 79,55 e os valores variaram entre 42,90 e 100,00. Os valores encontrados na sabatina 2 foram semelhantes, em que a média amostral foi de 79,26 e os valores variaram entre 43,75 e 100. O desvio padrão de ambas as provas também foi semelhante com valor de 19,00 e 19,71, na primeira e segunda sabatina respectivamente.
 
 ## Explorando os dados
 
@@ -114,7 +115,6 @@ pv2 <- prova2 %>%
            label = "Mean")
 ```
 
-
 ```{r}
 #gráficos boxplot
 
@@ -140,7 +140,7 @@ pv22 <- prova2 %>%
 
 ## Juntando os gráficos
 
-Para obter os dois gráficos gerados de cada formato em apenas uma imagem, utilizaremos o pacote patchork. 
+Para obter os dois gráficos gerados de cada formato em apenas uma imagem, utilizaremos o pacote patchork.
 
 ```{r}
 library (patchwork)
@@ -149,6 +149,7 @@ library (patchwork)
     plot_layout(guides = "collect", 
               axes = "collect")
 ```
+
 Podemos observar, pelos gráficos do tipo histograma, que a distribuição das notas dos alunos não apresenta uma distribuição normal.
 
 ```{r}
@@ -157,11 +158,13 @@ Podemos observar, pelos gráficos do tipo histograma, que a distribuição das n
               axes = "collect") 
  
 ```
-Podemos observar, pelo gráfico do tipo boxplot, que a mediana das notas de cada sabatina foram próximas e que a maioria das notas alcançaram o mínimo de 60 pontos. 
+
+Podemos observar, pelo gráfico do tipo boxplot, que a mediana das notas de cada sabatina foram próximas e que a maioria das notas alcançaram o mínimo de 60 pontos.
 
 ## Gráfico de barras de erro
 
 Para visualizar a variabilidade do conjunto de dados, podemos utilizar uma barra de erro da média amostral em relação ao desvio padrão
+
 ```{r}
 sab %>% 
   group_by(prova) %>% 
@@ -179,6 +182,7 @@ sab %>%
 
   
 ```
+
 Pelo gráfico de barra de erro, podemos perceber que houve uma elevada variabilidade em ambos conjuntos de dados e que esse erro foi similar em ambas sabatinas.
 
 # Conclusão

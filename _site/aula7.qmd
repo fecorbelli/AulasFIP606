@@ -4,6 +4,8 @@ format: html
 editor: visual
 editor_options: 
   chunk_output_type: inline
+message: false
+warning: false
 ---
 
 ## Conjunto de dados

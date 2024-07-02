@@ -4,6 +4,8 @@ format: html
 editor: visual
 editor_options: 
   chunk_output_type: console
+message: false
+warning: false
 ---
 
 # Inferencial
@@ -34,8 +36,7 @@ mg %>%
 
 O teste t é utilizado somente quando há 2 grupos no conjunto de dados. Além disso, é necessário que sejam atendidas as premissas de distribuição normal e a variânça dos grupos sejam homogêneas.
 
-Para realizar o teste t, os dados precisam se apresentar em grupos separados (formato largo). Assim, é preciso utilizar a função `pivot_wider()` para o conjunto de dados mg. 
-Para execução do teste t utilizamos a função `t.test()`. 
+Para realizar o teste t, os dados precisam se apresentar em grupos separados (formato largo). Assim, é preciso utilizar a função `pivot_wider()` para o conjunto de dados mg. Para execução do teste t utilizamos a função `t.test()`.
 
 ```{r}
 mg2 <- mg %>% 
@@ -117,7 +118,7 @@ escala2 <- escala %>%
 
 ### Verificação de premissas e teste t
 
-No caso do teste t pareado, adicionamos paired = TRUE ao script do teste. 
+No caso do teste t pareado, adicionamos paired = TRUE ao script do teste.
 
 ```{r}
 # Verificar se há normalidade
@@ -140,7 +141,7 @@ No teste não paramétrico não é necessário o atendimento das premissas para 
 
 ### Teste
 
-Wilcox test é o equivalente não paramétrico do teste t. Utilizamos a função `wilcox.test()`. 
+Wilcox test é o equivalente não paramétrico do teste t. Utilizamos a função `wilcox.test()`.
 
 ```{r}
 wilcox.test(escala2$Aided1,
@@ -168,10 +169,9 @@ micelial %>%
 
 ```
 
-### ANOVA 
+### ANOVA
 
-Os dados devem ser ajustados para o modelo de ANOVA por meio da função `lm()` e o teste em si é realizado por meio da função `anova()`.
-A função `summary` permite a visualização de um resumo estatistico do teste. 
+Os dados devem ser ajustados para o modelo de ANOVA por meio da função `lm()` e o teste em si é realizado por meio da função `anova()`. A função `summary` permite a visualização de um resumo estatistico do teste.
 
 ```{r}
 m1 <- lm(tcm ~ especie, data = micelial)
@@ -184,7 +184,7 @@ summary(m1)
 
 ### Verificação de premissas
 
-Na análise de variânça utilizamos a função `shapiro.test()` para verificação da normalidade e a função `bartlett.test()` para verificação da homogeneidade da variânça. 
+Na análise de variânça utilizamos a função `shapiro.test()` para verificação da normalidade e a função `bartlett.test()` para verificação da homogeneidade da variânça.
 
 ```{r}
 shapiro.test(m1$residuals)
@@ -194,9 +194,9 @@ bartlett.test(tcm ~ especie, data = micelial)
 
 Nomenclaturas ANOVA: sum sq = somatório dos quadrados; df = graus de liberdade; mean sq = média dos quadrados -\> sum sq / df; F value = valor F -\> Mean sq fator / Mean sq residuo
 
-### Grupos distintos 
+### Grupos distintos
 
-Para verificar os grupos que são distintos estatisticamente, primeiro calculamos as médias dos grupos por meio da função `emmeans()` do pacote **emmeans**. Depois utilizamos a função `cld()`do pacote **multcomp** para visualizar os grupamentos distintos. 
+Para verificar os grupos que são distintos estatisticamente, primeiro calculamos as médias dos grupos por meio da função `emmeans()` do pacote **emmeans**. Depois utilizamos a função `cld()`do pacote **multcomp** para visualizar os grupamentos distintos.
 
 ```{r}
 library(emmeans)
@@ -211,7 +211,7 @@ cld (medias1)
 
 Podemos analisar de forma gráfica as premissas por meio da função `plot (simulateResiduals())` do pacote **DHARMa** ou pela função `check_model()` do pacote **see**.
 
-Também podemos verificar as premissas diretamente pelas funções `check_normality()` e `check_heteroscedasticity()` do pacote **performance**. 
+Também podemos verificar as premissas diretamente pelas funções `check_normality()` e `check_heteroscedasticity()` do pacote **performance**.
 
 ```{r}
 library (DHARMa)

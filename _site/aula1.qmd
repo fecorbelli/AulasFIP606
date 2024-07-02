@@ -2,6 +2,8 @@
 title: "Aula1"
 format: html
 editor: visual
+message: false
+warning: false
 ---
 
 # Introdução ao R
