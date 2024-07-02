@@ -1,0 +1,220 @@
+---
+title: "Aula 10"
+format: html
+editor: visual
+---
+
+# Análise de correlação
+
+A análise de correlação permite verificar se as variáveis estão positivamente correlacionadas (quando uma aumenta, a outra também aumenta), negativamente correlacionadas (quando uma aumenta, a outra diminui) ou se não há correlação entre elas.
+
+### Importação dos dados
+
+```{r}
+library(tidyverse)
+library(gsheet)
+
+imgs <- gsheet2tbl("https://docs.google.com/spreadsheets/d/1bq2N19DcZdtax2fQW9OHSGMR0X2__Z9T/edit#gid=373270992")
+
+```
+
+### Visualização e ajuste ao modelo linear
+
+```{r}
+imgs %>% 
+  ggplot(aes(Assess, LeafDoctor)) +
+  geom_point()
+
+imgs %>% 
+  pivot_longer(3:5, names_to = method,
+               values_to = value) %>% 
+  ggplot(aes()) +
+  geom_point()
+  
+imgs %>% 
+  ggplot(aes(Assess, ImageJ)) +
+  geom_point() +
+  geom_smooth(method = "lm")
+
+
+```
+
+### Coeficiente de correlação de Pearson
+
+Podemos verificar a correlação entre variáveis atraves da função `cor.test()` ou da função `corgraph()` do pacote **AgroR**. 
+
+```{r}
+imgs2 <- imgs %>% 
+  select(3:5)
+
+library(dplyr)
+library(AgroR)
+corgraph(imgs2)
+
+cor.test(imgs$Assess, imgs$LeafDoctor)
+# testa se coeficiente é zero (h0)
+cor(imgs$Assess, imgs$LeafDoctor)
+
+```
+Interpretação: correlação forte
+Quanto maior a correlação, menor p-valor
+
+```{r}
+library(corrplot)
+
+cor_imgs2 <- cor(imgs2)
+corrplot(cor_imgs2, method = 'number', type = "lower", diag = FALSE)
+```
+
+## Análise de correlação com outros conjuntos de dados
+
+```{r}
+campo <- gsheet2tbl("https://docs.google.com/spreadsheets/d/1bq2N19DcZdtax2fQW9OHSGMR0X2__Z9T/edit#gid=866852711")
+
+campo2 <- campo %>% 
+  select(DFC, FER, PROD)
+
+corgraph(campo2)
+
+campo %>% 
+  ggplot(aes(DFC, PROD)) +
+  geom_point()
+  
+```
+
+# Análise de regressão não-linear
+
+### Importação dos dados
+```{r}
+library(gsheet)
+estande <- gsheet2tbl("https://docs.google.com/spreadsheets/d/1bq2N19DcZdtax2fQW9OHSGMR0X2__Z9T/edit#gid=401662555")
+```
+
+### Visualização com ajuste linear e quadrático
+
+```{r}
+exp2 <- estande %>% 
+  filter(exp == 2)
+
+exp2 %>% 
+  ggplot (aes(trat, nplants)) +
+  geom_point() +
+  ylim(0,100) +
+  geom_smooth(method = "lm",
+              se = FALSE,
+              formula = y ~ poly(x,2),
+              color = "black") +
+  geom_smooth(method = "lm",
+              se = FALSE)
+```
+
+## Análise de regressão com modelo linear - primeira ordem 
+```{r}
+lm2 <- lm(nplants ~ trat,
+          data = exp2)
+
+summary(lm2)
+```
+
+## Análise de regressão com modelo quadratico - segunda ordem 
+
+```{r}
+
+exp2$trat2 <- exp2$trat^2
+
+lm3 <- lm(nplants ~ trat + trat2,
+          data = exp2)
+
+summary(lm3)
+
+AIC(lm2)
+AIC(lm3)
+```
+Interpretação: Maior o valor de r2 no segundo modelo, então o modelo quadrático explica melhor a relação entre variáveis. 
+Função = 66,3 - 1,77* TRAT + 0,02* TRAT2
+
+```{r}
+library(AgroR)
+with(exp2, polynomial(trat, nplants, grau = 2))
+
+data("phao")
+with(phao, polynomial(dose, comp, grau = 2))
+```
+
+coeficiente de correlação maior que coeficiente de regressão -  precisa de relação de causa e efeito
+
+r2 - o quanto de y é explicado por x
+r - força de associação entre x e y
+
+# EC50 com pacote DRC
+ 
+### Importação 
+```{r}
+library(gsheet)
+sensib <- gsheet2tbl("https://docs.google.com/spreadsheets/d/1bq2N19DcZdtax2fQW9OHSGMR0X2__Z9T/edit#gid=465348652")
+```
+
+### Visualização
+
+```{r}
+ sensib %>% 
+  group_by(code, dose) %>% 
+  summarise(mean_germination = mean(germination))
+
+sensib %>% 
+  group_by(code, dose) %>% 
+  summarise(mean_germination = mean(germination)) %>% 
+  ggplot(aes(dose, mean_germination))+
+  geom_point() +
+  facet_wrap(~code)
+
+```
+
+### Análise
+
+Para realizar a análise devemos filtrar o tratamento que queremos investigar e depois utilizamos a função `drm()`.
+
+```{r}
+library(drc)
+library(MASS)
+library(tidyverse)
+
+isolado165 <- sensib %>% 
+  filter (code == "165")
+
+drc1 <- drm (mean_germination ~ dose, data = isolado165, fct = LL.3()) #ou WI.3
+
+AIC(drc1)
+plot(drc1)
+ED(drc1, 50, interval = "delta")
+
+isolado186 <- sensib %>% 
+  filter(code == "186")
+
+drc2 <- drm(mean_germination ~ dose, data = isolado186, fct = LL.3())
+
+AIC(drc2)
+plot(drc2)
+ED(drc2, 50, interval = "delta")
+```
+
+# EC50 com pacote ec50estimator
+
+Nesse pacote é possível obter os valores de EC50 para todos os dados. A função utilizada é `estimate_EC50()`.
+
+```{r}
+library(ec50estimator)
+
+df_ec50 <- estimate_EC50 (mean_germination ~ dose, 
+                          data = sensib,
+                          isolate_col = "code",
+                          interval = "delta",
+                          fct = drc::LL.3())
+
+#maior ec50 menos sensivel ao fungicida
+
+df_ec50 %>% 
+  ggplot (aes(recorder(ID, Estimate),Estimate)) +
+  geom_point()+
+  geom_errorbar(aes())
+```

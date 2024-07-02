@@ -1,0 +1,240 @@
+---
+title: "Aula 7"
+format: html
+editor: visual
+editor_options: 
+  chunk_output_type: inline
+---
+
+## Conjunto de dados
+
+Utilizando um conjunto de dados disponível no pacote nativo do programa
+
+```{r}
+inseticida <- InsectSprays
+?InsectSprays
+
+library(tidyverse)
+inseticida %>% 
+  count(spray)
+
+```
+
+O conjunto apresenta um fator com seis niveis
+
+## Visualização inicial
+
+```{r}
+theme_set()
+inseticida %>% 
+  ggplot(aes(spray,count)) +
+  geom_boxplot()
+
+```
+
+## Anova
+
+```{r}
+m1 <- lm (count ~ spray, data = inseticida)
+
+anova (m1)
+summary(m1)
+```
+
+## Verificação das premissas
+
+```{r}
+m1$residuals
+hist(m1$residuals)
+
+qqnorm(m1$residuals)
+qqline(m1$residuals)
+
+shapiro.test(m1$residuals)
+
+bartlett.test(count ~ spray,
+              data = inseticida)
+
+library(performance)
+check_normality(m1)
+check_heteroscedasticity(m1)
+
+library(DHARMa)
+plot(simulateResiduals(m1))
+```
+
+Quando há variânças heterogênas é mais problemático, normalidade pode relevar um pouco e proceder com a análise a depender do caso. Mas o conjunto de dados acima tem ambos os problemas, então deve utilizar alternativas de avaliação como a transformação do conjunto de dados.
+
+# Alternativa 1
+
+## Transformação do conjunto de dados
+
+Podemos transformar os dados de diferentes maneiras, sendo as mais comuns log e raiz quadrada. 
+O conjunto inseticida apresenta variáveis resposta do tipo númerica discreta e, normalmente, a transformação para raiz quadrada é uma boa opção.
+Para a transformação utilizamos a função `mutate()` e o argumento `sqrt()`. 
+
+```{r}
+
+inseticida <- inseticida %>% 
+  mutate(count2 = sqrt(count))
+
+```
+
+## Anova e verificação das premissas com o conjunto transformado
+
+```{r}
+m2 <- lm (count2 ~ spray,
+          data = inseticida)
+anova(m2)
+summary(m2)
+
+m2$residuals
+hist(m2$residuals)
+
+qqnorm(m2$residuals)
+qqline(m2$residuals)
+
+shapiro.test(m2$residuals)
+
+bartlett.test(count2 ~ spray,
+              data = inseticida)
+
+library(performance)
+check_normality(m2)
+check_heteroscedasticity(m2)
+
+library(DHARMa)
+plot(simulateResiduals(m2))
+```
+
+### Transformação box-cox
+
+A transformação tipo Box-Cox é utilizada para melhorar a adequação dos dados aos pressupostos de normalidade e homogeneidade de variância. A transformação de Box-Cox é definida pela seguinte equação: y(lambda) = (x^lambda - 1) / lambda. 
+Para encontrar o valor de lambda (valor de x quando y é maximo) utilizamos o pacote **MASS**
+```{r}
+
+library(MASS)
+B <- boxcox(lm(inseticida$count+0.1 ~ 1))
+lambda <- B$x[which.max(B$y)]
+lambda 
+
+inseticida$count3 <- (inseticida$count ^ lambda - 1) / lambda
+inseticida$count3 
+
+
+```
+
+## Discriminação dos tratamentos com médias distintas estatisticamente
+
+Avaliação com o conjunto de dados original e os dados transformados para comparação de discriminação dos grupos.
+
+```{r}
+
+library(emmeans)
+m1_medias <- emmeans(m1, ~ spray)
+plot(m1_medias)
+library(multcomp)
+cld(m1_medias)
+
+library(emmeans)
+m2_medias <- emmeans(m2, ~ spray)
+library(multcomp)
+plot(m2_medias)
+cld(m2_medias)
+
+#matriz de comparação
+pwpm(m2_medias)
+#representação gráfica
+pwpp(m2_medias)
+#comparação par a par
+pairs(m2_medias)
+```
+
+Modelo sem transformação discriminou menos, houve o erro tipo 2 (não rejeitou a hipótese nula quando deveria).
+
+# Alternativa 2
+
+## Estatística não paramétrica
+
+O teste Kruskal é o equivalente não paramétrico da ANOVA. Para realizar a análise é utilizada a função `kruskal.test()`. 
+
+```{r}
+kruskal.test(count ~ spray,
+             data = inseticida)
+
+library(agricolae)
+
+m3 <- kruskal(inseticida$count,
+        inseticida$spray,
+        group = TRUE)
+
+m3
+```
+
+# Alternativa 3 - GLMs
+
+O modelo linear generalizado é uma outra forma de ajustar os dados. Nessa análise, o  conjunto de dados é ajustado em uma distribuição que se adeque melhor, diferentemente da distribuição normal.
+
+Utilizamos a função `glm()` e em "family =" colocamos a família da distribuição que desejamos ajustar os dados. 
+Nesse exemplo os dados de contagem são mais ajustados a distribuição de poisson. 
+
+```{r}
+m4 <- glm(count ~ spray,
+          family = poisson,
+          data = inseticida)
+anova(m4)
+summary(m4)
+
+library(car)
+Anova(m4)
+plot(simulateResiduals(m4))
+m4_medias <- emmeans(m4, ~ spray,
+                     type = "response")
+library(multcomp)
+cld (m4_medias)
+
+```
+
+# Anova fatorial
+
+### Importação do conjunto de dados
+
+```{r}
+library(gsheet)
+li <- gsheet2tbl("https://docs.google.com/spreadsheets/d/1bq2N19DcZdtax2fQW9OHSGMR0X2__Z9T/edit#gid=2023059672")
+```
+
+### Visualização inicial
+
+```{r}
+
+library(tidyverse)
+li %>% 
+  ggplot(aes(factor(dose), severity, color = factor(dose))) +
+  geom_jitter(width = 0.1) +
+  facet_wrap(~treat)
+```
+
+## Modelo fatorial (two-way ANOVA)
+
+Na two-way ANOVA devemos utilizar "fator1*fator2" no modelo estatístico.  
+
+```{r}
+mf <- lm (severity ~ treat*factor(dose),
+          data = li)
+mf
+anova(mf)
+```
+
+### Verificação das premissas e discriminação dos grupos
+
+```{r}
+library(DHARMa)
+plot(simulateResiduals(mf))
+
+mf_medias <- emmeans(mf, ~ treat | dose)
+mf_medias
+library(multcomp)
+library(MASS)
+cld(mf_medias)
+```
