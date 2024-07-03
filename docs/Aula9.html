@@ -261,7 +261,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Um experimento pode ser realizado com diferentes arranjos, ou seja, a forma como dois ou mais fatores estudados ao mesmo tempo são esquematizados. Os arranjos mais utilizados são o fatorial e parcelas subdivididas, podendo ser também combinados.</p>
 <section id="importação-dos-dados" class="level3">
 <h3 class="anchored" data-anchor-id="importação-dos-dados">Importação dos dados</h3>
-<div class="cell" data-hash="Aula9_cache/html/unnamed-chunk-1_85bddf0af3962a192180155624062649">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gsheet)</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>milho <span class="ot">&lt;-</span> <span class="fu">gsheet2tbl</span>(<span class="st">"https://docs.google.com/spreadsheets/d/1bq2N19DcZdtax2fQW9OHSGMR0X2__Z9T/edit#gid=1345524759"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -269,7 +269,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="visualização" class="level3">
 <h3 class="anchored" data-anchor-id="visualização">Visualização</h3>
-<div class="cell" data-hash="Aula9_cache/html/unnamed-chunk-2_a8afb7b6346c253c60b9aeb266ca0ef2">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>milho <span class="sc">%&gt;%</span> </span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(hybrid, index)) <span class="sc">+</span></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -304,7 +304,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="anova-parcela-subdividida---index" class="level2">
 <h2 class="anchored" data-anchor-id="anova-parcela-subdividida---index">Anova parcela subdividida - Index</h2>
 <p>Para realização dessa análise, devemos considerar o bloco como um fator. Além disso, devemos observar a interação dos fatores híbrido e método, bem como com o bloco.</p>
-<div class="cell" data-hash="Aula9_cache/html/unnamed-chunk-3_ed75ed3734628498e2706ef4e5c52320">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lme4)</span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(Matrix)</span>
@@ -332,7 +332,7 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 <p>Interpretação: Pelo menos um híbrido se diferencia dos demais. Assim como existe diferença significativa entre os métodos, existe diferença na interação híbrido com método</p>
 <section id="checando-as-premissas" class="level3">
 <h3 class="anchored" data-anchor-id="checando-as-premissas">Checando as premissas</h3>
-<div class="cell" data-hash="Aula9_cache/html/unnamed-chunk-4_58027188e81a9b1438d8ebb91a17161c">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(DHARMa)</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">simulateResiduals</span>(mix2))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
@@ -351,7 +351,7 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 </section>
 <section id="transformação-para-raiz-quadrada-e-anova" class="level3">
 <h3 class="anchored" data-anchor-id="transformação-para-raiz-quadrada-e-anova">Transformação para raiz quadrada e ANOVA</h3>
-<div class="cell" data-hash="Aula9_cache/html/unnamed-chunk-5_d0c0a49b52b8dcd4edf6ca799b9b952e">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>mix22 <span class="ot">&lt;-</span> <span class="fu">lmer</span>(<span class="fu">sqrt</span>(index) <span class="sc">~</span> hybrid<span class="sc">*</span>method <span class="sc">+</span> block <span class="sc">+</span></span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>               (<span class="dv">1</span><span class="sc">|</span>block<span class="sc">/</span>hybrid), <span class="at">data =</span> milho)</span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -373,7 +373,7 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 </section>
 <section id="checando-as-premissas-após-transformação" class="level3">
 <h3 class="anchored" data-anchor-id="checando-as-premissas-após-transformação">Checando as premissas após transformação</h3>
-<div class="cell" data-hash="Aula9_cache/html/unnamed-chunk-6_3dea70b6b94b5008f99f11314384dbc9">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(DHARMa)</span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">simulateResiduals</span>(mix22))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
@@ -392,7 +392,7 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 </section>
 <section id="verificação-dos-grupos-distintos-estatisticamente" class="level3">
 <h3 class="anchored" data-anchor-id="verificação-dos-grupos-distintos-estatisticamente">Verificação dos grupos distintos estatisticamente</h3>
-<div class="cell" data-hash="Aula9_cache/html/unnamed-chunk-7_ea321ddf3213638d2af6590313f7e4f9">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(emmeans)</span>
 <span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>medias_milho <span class="ot">&lt;-</span> <span class="fu">emmeans</span>(mix22, <span class="sc">~</span> hybrid <span class="sc">|</span> method,</span>
 <span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>                        <span class="at">type =</span> <span class="st">"response"</span>)</span>
@@ -479,7 +479,7 @@ NOTE: If two or more means share the same grouping symbol,
 </section>
 <section id="anova-parcela-subdividida---yield" class="level2">
 <h2 class="anchored" data-anchor-id="anova-parcela-subdividida---yield">Anova parcela subdividida - Yield</h2>
-<div class="cell" data-hash="Aula9_cache/html/unnamed-chunk-8_2ff31b9bf6b64aef5353837cb05ccf83">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>mix3 <span class="ot">&lt;-</span> <span class="fu">lmer</span>(yield <span class="sc">~</span> hybrid<span class="sc">*</span>method <span class="sc">+</span> block <span class="sc">+</span></span>
 <span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>               (<span class="dv">1</span><span class="sc">|</span>block<span class="sc">/</span>hybrid), <span class="at">data =</span> milho)</span>
 <span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(car)</span>
@@ -499,7 +499,7 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 </div>
 <section id="checando-as-premissas-1" class="level3">
 <h3 class="anchored" data-anchor-id="checando-as-premissas-1">Checando as premissas</h3>
-<div class="cell" data-hash="Aula9_cache/html/unnamed-chunk-9_6d99215578b7a3ea07126f7c5f7a40e8">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(DHARMa)</span>
 <span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">simulateResiduals</span>(mix3))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
@@ -518,7 +518,7 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 </section>
 <section id="transformação-para-raiz-quadrada" class="level3">
 <h3 class="anchored" data-anchor-id="transformação-para-raiz-quadrada">Transformação para raiz quadrada</h3>
-<div class="cell" data-hash="Aula9_cache/html/unnamed-chunk-10_bd935b796c22c5b814be31f2712efbf8">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>mix33 <span class="ot">&lt;-</span> <span class="fu">lmer</span>(<span class="fu">sqrt</span>(yield) <span class="sc">~</span> hybrid<span class="sc">*</span>method <span class="sc">+</span> block <span class="sc">+</span></span>
 <span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>               (<span class="dv">1</span><span class="sc">|</span>block<span class="sc">/</span>hybrid), <span class="at">data =</span> milho)</span>
 <span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -540,7 +540,7 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 </section>
 <section id="checando-as-premissas-após-transformação-1" class="level3">
 <h3 class="anchored" data-anchor-id="checando-as-premissas-após-transformação-1">Checando as premissas após transformação</h3>
-<div class="cell" data-hash="Aula9_cache/html/unnamed-chunk-11_5d03fe3ff5a19b07e26e678f3e1ce761">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(DHARMa)</span>
 <span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">simulateResiduals</span>(mix33))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
@@ -559,7 +559,7 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 </section>
 <section id="verificação-dos-grupos-distintos-estatisticamente-1" class="level3">
 <h3 class="anchored" data-anchor-id="verificação-dos-grupos-distintos-estatisticamente-1">Verificação dos grupos distintos estatisticamente</h3>
-<div class="cell" data-hash="Aula9_cache/html/unnamed-chunk-12_8fad223fc1be6261f021b9c00362d7f0">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(emmeans)</span>
 <span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a>medias_milho3 <span class="ot">&lt;-</span> <span class="fu">emmeans</span>(mix33, <span class="sc">~</span> hybrid <span class="sc">|</span> method,</span>
 <span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a>                        <span class="at">type =</span> <span class="st">"response"</span>)</span>
@@ -648,7 +648,7 @@ NOTE: If two or more means share the same grouping symbol,
 <p>A análise de regressão permite estudar a relação entre uma variável dependente e uma ou mais variáveis independentes. Ela busca estimar uma equação que descreve a relação entre as variáveis.</p>
 <section id="importação-dos-dados-1" class="level3">
 <h3 class="anchored" data-anchor-id="importação-dos-dados-1">Importação dos dados</h3>
-<div class="cell" data-hash="Aula9_cache/html/unnamed-chunk-13_32cc5358891510839b1efd8bb2448ade">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gsheet)</span>
 <span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a>estande <span class="ot">&lt;-</span> <span class="fu">gsheet2tbl</span>(<span class="st">"https://docs.google.com/spreadsheets/d/1bq2N19DcZdtax2fQW9OHSGMR0X2__Z9T/edit#gid=401662555"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -656,7 +656,7 @@ NOTE: If two or more means share the same grouping symbol,
 <section id="visualização-1" class="level3">
 <h3 class="anchored" data-anchor-id="visualização-1">Visualização</h3>
 <p>Para visualização da reta referente a regressão linear utilizamos o argumento method = “lm” dentro da função <code>geom_smooth()</code>.</p>
-<div class="cell" data-hash="Aula9_cache/html/unnamed-chunk-14_584c1136476ac1b25cf4105158988e05">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a>estande <span class="sc">%&gt;%</span> </span>
 <span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(trat,nplants)) <span class="sc">+</span></span>
 <span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_jitter</span>(<span class="at">width =</span> <span class="fl">0.01</span>, <span class="at">alpha =</span> <span class="fl">0.2</span>) <span class="sc">+</span></span>
@@ -681,7 +681,7 @@ NOTE: If two or more means share the same grouping symbol,
 <section id="modelo-de-melhor-ajuste---experimento-1" class="level3">
 <h3 class="anchored" data-anchor-id="modelo-de-melhor-ajuste---experimento-1">Modelo de melhor ajuste - Experimento 1</h3>
 <p>Para analisar cada experimento isoladamente, primeiro filtramos o conjunto de dados com a função <code>filter()</code>. Depois ajustamos os dados ao modelo linear por meio da função <code>lm()</code>.</p>
-<div class="cell" data-hash="Aula9_cache/html/unnamed-chunk-15_cf9075f4d8b4a7edd977efead8d44256">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb45"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a>exp1 <span class="ot">&lt;-</span> estande <span class="sc">%&gt;%</span> </span>
 <span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(exp <span class="sc">==</span> <span class="dv">1</span>)</span>
 <span id="cb45-3"><a href="#cb45-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -724,7 +724,7 @@ F-statistic: 1.694 on 1 and 22 DF,  p-value: 0.2066</code></pre>
 </section>
 <section id="modelo-de-melhor-ajuste---experimento-2" class="level3">
 <h3 class="anchored" data-anchor-id="modelo-de-melhor-ajuste---experimento-2">Modelo de melhor ajuste - Experimento 2</h3>
-<div class="cell" data-hash="Aula9_cache/html/unnamed-chunk-16_237306637e08dd73701bc8698ca03194">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb48"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a>exp2 <span class="ot">&lt;-</span> estande <span class="sc">%&gt;%</span> </span>
 <span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(exp <span class="sc">==</span> <span class="dv">2</span>)</span>
 <span id="cb48-3"><a href="#cb48-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -767,7 +767,7 @@ F-statistic: 19.05 on 1 and 22 DF,  p-value: 0.0002473</code></pre>
 </section>
 <section id="modelo-de-melhor-ajuste---experimento-3" class="level3">
 <h3 class="anchored" data-anchor-id="modelo-de-melhor-ajuste---experimento-3">Modelo de melhor ajuste - Experimento 3</h3>
-<div class="cell" data-hash="Aula9_cache/html/unnamed-chunk-17_d5faa72a5fb6d5292bb4831d722a6aca">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb51"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a>exp3 <span class="ot">&lt;-</span> estande <span class="sc">%&gt;%</span> </span>
 <span id="cb51-2"><a href="#cb51-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(exp <span class="sc">==</span> <span class="dv">3</span>)</span>
 <span id="cb51-3"><a href="#cb51-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -815,7 +815,7 @@ F-statistic: 34.19 on 1 and 22 DF,  p-value: 6.968e-06</code></pre>
 <section id="transformações-para-tornar-os-dados-mais-linearizados" class="level3">
 <h3 class="anchored" data-anchor-id="transformações-para-tornar-os-dados-mais-linearizados">Transformações para tornar os dados mais linearizados</h3>
 <p>Para tornar os dados mais linearizados e o ajuste ser melhor, podemos transformar o conjunto de dados. Para verificar qual transformação se enquadra melhor, observamos o valor de AIC. Quanto menor o AIC melhor o modelo/melhor ajuste.</p>
-<div class="cell" data-hash="Aula9_cache/html/unnamed-chunk-18_393f55e121e769936557d180392cfa42">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb55"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a>exp2 <span class="sc">|&gt;</span> </span>
 <span id="cb55-2"><a href="#cb55-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="fu">log</span>(trat), nplants))<span class="sc">+</span></span>
 <span id="cb55-3"><a href="#cb55-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()<span class="sc">+</span></span>
@@ -1007,7 +1007,7 @@ Number of Fisher Scoring iterations: 4</code></pre>
 <section id="análise-conjunta" class="level2">
 <h2 class="anchored" data-anchor-id="análise-conjunta">Análise conjunta</h2>
 <p>Quando há mais de um experimento também podemos realizar uma análise mista, em que é considerada uma média de todos os experimentos.</p>
-<div class="cell" data-hash="Aula9_cache/html/unnamed-chunk-19_1be23de0afac4eb482d4f7f32bbdcb16">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb80"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb80-1"><a href="#cb80-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lme4)</span>
 <span id="cb80-2"><a href="#cb80-2" aria-hidden="true" tabindex="-1"></a>glm4 <span class="ot">&lt;-</span> <span class="fu">glmer</span>(nplants <span class="sc">~</span> trat <span class="sc">+</span> (trat<span class="sc">|</span>exp),</span>
 <span id="cb80-3"><a href="#cb80-3" aria-hidden="true" tabindex="-1"></a>            <span class="at">family =</span> poisson,</span>
@@ -1093,7 +1093,7 @@ trat -0.192</code></pre>
 </section>
 <section id="relação-entre-variáveis-respostas" class="level2">
 <h2 class="anchored" data-anchor-id="relação-entre-variáveis-respostas">Relação entre variáveis respostas</h2>
-<div class="cell" data-hash="Aula9_cache/html/unnamed-chunk-20_6a33a43743b6e34cd49a4c1700c2ba80">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb88"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb88-1"><a href="#cb88-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">require</span>(<span class="st">"BiocManager"</span>, <span class="at">quietly =</span> <span class="cn">TRUE</span>))</span>
 <span id="cb88-2"><a href="#cb88-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">install.packages</span>(<span class="st">"BiocManager"</span>)</span>
 <span id="cb88-3"><a href="#cb88-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1139,7 +1139,7 @@ F-statistic:  19.3 on 1 and 380 DF,  p-value: 1.452e-05</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb91"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb91-1"><a href="#cb91-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Intercept é a produtividade com a incidência igual a 0</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell" data-hash="Aula9_cache/html/unnamed-chunk-21_5ecf1ffcf50fa8836ee107bba1777daf">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb92"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb92-1"><a href="#cb92-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(broom)</span>
 <span id="cb92-2"><a href="#cb92-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
 <span id="cb92-3"><a href="#cb92-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1191,7 +1191,7 @@ F-statistic:  19.3 on 1 and 380 DF,  p-value: 1.452e-05</code></pre>
 <p><img src="Aula9_files/figure-html/unnamed-chunk-21-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
-<div class="cell" data-hash="Aula9_cache/html/unnamed-chunk-22_f14fc5ce28dcb2ed63669283b63b26f3">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb97"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb97-1"><a href="#cb97-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lme4)</span>
 <span id="cb97-2"><a href="#cb97-2" aria-hidden="true" tabindex="-1"></a>mofo3 <span class="ot">&lt;-</span> <span class="fu">lmer</span>(yld <span class="sc">~</span> inc <span class="sc">+</span> (inc<span class="sc">|</span> study), <span class="at">data =</span> wm,</span>
 <span id="cb97-3"><a href="#cb97-3" aria-hidden="true" tabindex="-1"></a>              <span class="at">REML =</span> F)</span>

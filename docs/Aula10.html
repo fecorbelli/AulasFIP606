@@ -252,7 +252,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>A análise de correlação permite verificar se as variáveis estão positivamente correlacionadas (quando uma aumenta, a outra também aumenta), negativamente correlacionadas (quando uma aumenta, a outra diminui) ou se não há correlação entre elas.</p>
 <section id="importação-dos-dados" class="level3">
 <h3 class="anchored" data-anchor-id="importação-dos-dados">Importação dos dados</h3>
-<div class="cell" data-hash="Aula10_cache/html/unnamed-chunk-1_77084c3262b79f563e55d3367494fc13">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gsheet)</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -261,7 +261,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="visualização-e-ajuste-ao-modelo-linear" class="level3">
 <h3 class="anchored" data-anchor-id="visualização-e-ajuste-ao-modelo-linear">Visualização e ajuste ao modelo linear</h3>
-<div class="cell" data-hash="Aula10_cache/html/unnamed-chunk-2_8cf4ceb9d5ca60ebd07ec2ca873a6931">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>imgs <span class="sc">%&gt;%</span> </span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(Assess, LeafDoctor)) <span class="sc">+</span></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -280,7 +280,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="coeficiente-de-correlação-de-pearson" class="level3">
 <h3 class="anchored" data-anchor-id="coeficiente-de-correlação-de-pearson">Coeficiente de correlação de Pearson</h3>
 <p>Podemos verificar a correlação entre variáveis atraves da função <code>cor.test()</code> ou da função <code>corgraph()</code> do pacote <strong>AgroR</strong>.</p>
-<div class="cell" data-hash="Aula10_cache/html/unnamed-chunk-3_1669f4eb0354c21de7225c39158c153c">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>imgs2 <span class="ot">&lt;-</span> imgs <span class="sc">%&gt;%</span> </span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="dv">3</span><span class="sc">:</span><span class="dv">5</span>)</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -317,7 +317,7 @@ sample estimates:
 </div>
 </div>
 <p>Interpretação: correlação forte Quanto maior a correlação, menor p-valor</p>
-<div class="cell" data-hash="Aula10_cache/html/unnamed-chunk-4_48b524dd94d53907b64c3692dc4798e2">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(corrplot)</span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>cor_imgs2 <span class="ot">&lt;-</span> <span class="fu">cor</span>(imgs2)</span>
@@ -329,7 +329,7 @@ sample estimates:
 </section>
 <section id="análise-de-correlação-com-outros-conjuntos-de-dados" class="level2">
 <h2 class="anchored" data-anchor-id="análise-de-correlação-com-outros-conjuntos-de-dados">Análise de correlação com outros conjuntos de dados</h2>
-<div class="cell" data-hash="Aula10_cache/html/unnamed-chunk-5_32c0bc3c5deea6d77ca621914846a5a4">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>campo <span class="ot">&lt;-</span> <span class="fu">gsheet2tbl</span>(<span class="st">"https://docs.google.com/spreadsheets/d/1bq2N19DcZdtax2fQW9OHSGMR0X2__Z9T/edit#gid=866852711"</span>)</span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>campo2 <span class="ot">&lt;-</span> campo <span class="sc">%&gt;%</span> </span>
@@ -358,14 +358,14 @@ sample estimates:
 <h1>Análise de regressão não-linear</h1>
 <section id="importação-dos-dados-1" class="level3">
 <h3 class="anchored" data-anchor-id="importação-dos-dados-1">Importação dos dados</h3>
-<div class="cell" data-hash="Aula10_cache/html/unnamed-chunk-6_870eff4dc63db874733414f11a8ae710">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gsheet)</span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>estande <span class="ot">&lt;-</span> <span class="fu">gsheet2tbl</span>(<span class="st">"https://docs.google.com/spreadsheets/d/1bq2N19DcZdtax2fQW9OHSGMR0X2__Z9T/edit#gid=401662555"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="visualização-com-ajuste-linear-e-quadrático" class="level3">
 <h3 class="anchored" data-anchor-id="visualização-com-ajuste-linear-e-quadrático">Visualização com ajuste linear e quadrático</h3>
-<div class="cell" data-hash="Aula10_cache/html/unnamed-chunk-7_982adf812e6ac221c5171110f3af532d">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>exp2 <span class="ot">&lt;-</span> estande <span class="sc">%&gt;%</span> </span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(exp <span class="sc">==</span> <span class="dv">2</span>)</span>
 <span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -386,7 +386,7 @@ sample estimates:
 </section>
 <section id="análise-de-regressão-com-modelo-linear---primeira-ordem" class="level2">
 <h2 class="anchored" data-anchor-id="análise-de-regressão-com-modelo-linear---primeira-ordem">Análise de regressão com modelo linear - primeira ordem</h2>
-<div class="cell" data-hash="Aula10_cache/html/unnamed-chunk-8_0c5bb449abcd768dacf21a7f28c91e93">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>lm2 <span class="ot">&lt;-</span> <span class="fu">lm</span>(nplants <span class="sc">~</span> trat,</span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>          <span class="at">data =</span> exp2)</span>
 <span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -415,7 +415,7 @@ F-statistic: 19.05 on 1 and 22 DF,  p-value: 0.0002473</code></pre>
 </section>
 <section id="análise-de-regressão-com-modelo-quadratico---segunda-ordem" class="level2">
 <h2 class="anchored" data-anchor-id="análise-de-regressão-com-modelo-quadratico---segunda-ordem">Análise de regressão com modelo quadratico - segunda ordem</h2>
-<div class="cell" data-hash="Aula10_cache/html/unnamed-chunk-9_27cec3ceb1a1e53dbd0d455b228cd239">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>exp2<span class="sc">$</span>trat2 <span class="ot">&lt;-</span> exp2<span class="sc">$</span>trat<span class="sc">^</span><span class="dv">2</span></span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>lm3 <span class="ot">&lt;-</span> <span class="fu">lm</span>(nplants <span class="sc">~</span> trat <span class="sc">+</span> trat2,</span>
@@ -453,7 +453,7 @@ F-statistic: 12.49 on 2 and 21 DF,  p-value: 0.0002675</code></pre>
 </div>
 </div>
 <p>Interpretação: Maior o valor de r2 no segundo modelo, então o modelo quadrático explica melhor a relação entre variáveis. Função = 66,3 - 1,77* TRAT + 0,02* TRAT2</p>
-<div class="cell" data-hash="Aula10_cache/html/unnamed-chunk-10_1c5dbd59b2ff8cf96aec158bead0229e">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(AgroR)</span>
 <span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="fu">with</span>(exp2, <span class="fu">polynomial</span>(trat, nplants, <span class="at">grau =</span> <span class="dv">2</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -517,14 +517,14 @@ Residual  20  57.128000   2.8564000                        </code></pre>
 <h1>EC50 com pacote DRC</h1>
 <section id="importação" class="level3">
 <h3 class="anchored" data-anchor-id="importação">Importação</h3>
-<div class="cell" data-hash="Aula10_cache/html/unnamed-chunk-11_26cfe2ab55a59513998f36826195a2c3">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gsheet)</span>
 <span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>sensib <span class="ot">&lt;-</span> <span class="fu">gsheet2tbl</span>(<span class="st">"https://docs.google.com/spreadsheets/d/1bq2N19DcZdtax2fQW9OHSGMR0X2__Z9T/edit#gid=465348652"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="visualização" class="level3">
 <h3 class="anchored" data-anchor-id="visualização">Visualização</h3>
-<div class="cell" data-hash="Aula10_cache/html/unnamed-chunk-12_4362714e35309df3947dfff69700b39a">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a> sensib2 <span class="ot">&lt;-</span> sensib <span class="sc">%&gt;%</span> </span>
 <span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(code, dose) <span class="sc">%&gt;%</span> </span>
 <span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">mean_germination =</span> <span class="fu">mean</span>(germination))</span>
@@ -571,7 +571,7 @@ Residual  20  57.128000   2.8564000                        </code></pre>
 <section id="análise" class="level3">
 <h3 class="anchored" data-anchor-id="análise">Análise</h3>
 <p>Para realizar a análise devemos filtrar o tratamento que queremos investigar e depois utilizamos a função <code>drm()</code>.</p>
-<div class="cell" data-hash="Aula10_cache/html/unnamed-chunk-13_2894cd0a79303b1f177432df12d81e06">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(drc)</span>
 <span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(MASS)</span>
 <span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
@@ -624,7 +624,7 @@ e:1:50 0.579757   0.017621 0.539896 0.619619</code></pre>
 <section id="ec50-com-pacote-ec50estimator" class="level1">
 <h1>EC50 com pacote ec50estimator</h1>
 <p>Nesse pacote é possível obter os valores de EC50 para todos os dados. A função utilizada é <code>estimate_EC50()</code>.</p>
-<div class="cell" data-hash="Aula10_cache/html/unnamed-chunk-14_4db04178531d9b77689d65da6b59a306">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ec50estimator)</span>
 <span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a>df_ec50 <span class="ot">&lt;-</span> <span class="fu">estimate_EC50</span> (mean_germination <span class="sc">~</span> dose, </span>

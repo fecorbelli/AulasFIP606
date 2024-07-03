@@ -242,7 +242,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="pacotes" class="level2">
 <h2 class="anchored" data-anchor-id="pacotes">Pacotes</h2>
 <p>Alguns pacotes apresentam diferentes conjuntos de dados que podem ser utilizados. Para utilizá-los, basta baixar o pacote, ativar o mesmo e criar um objeto com o conjunto de dados do pacote que você quer trabalhar.</p>
-<div class="cell" data-hash="Aula2_cache/html/unnamed-chunk-1_55cb9a8db123a200ff9507b4a29b9bcd">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ec50estimator)</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>df1 <span class="ot">&lt;-</span> multi_isolate</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -250,7 +250,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="arquivo-excel" class="level2">
 <h2 class="anchored" data-anchor-id="arquivo-excel">Arquivo Excel</h2>
 <p>Para a importação de dados que estão em um arquivo excel devemos utilizar a função read_excel do pacote readxl. O comando será: read_excel(“nome do arquivo”).</p>
-<div class="cell" data-hash="Aula2_cache/html/unnamed-chunk-2_7343fd7b12a5125984a5156a5543ee87">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readxl)</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>df2 <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">"dados-diversos.xlsx"</span>)</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>df21 <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">"dados-diversos.xlsx"</span>,<span class="at">sheet =</span> <span class="st">"armazena"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -259,7 +259,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="arquivo-csv" class="level2">
 <h2 class="anchored" data-anchor-id="arquivo-csv">Arquivo CSV</h2>
 <p>Para a importação de dados que estão em um arquivo csv utilizamos a função read_csv do pacote tidyverse. O comando será: read_csv(“nome do arquivo”).</p>
-<div class="cell" data-hash="Aula2_cache/html/unnamed-chunk-3_8b43c2e5399682a9673587c0423b35b1">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>df3 <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"dados-diversos.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -267,7 +267,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="planilha-google" class="level2">
 <h2 class="anchored" data-anchor-id="planilha-google">Planilha Google</h2>
 <p>Para a importação de dados que estão em uma planilha google utilizamos a função gsheet2tbl do pacote gsheet. O comando será: gsheet2tb1(“endereço na web”).</p>
-<div class="cell" data-hash="Aula2_cache/html/unnamed-chunk-4_5752377cd2d8cd3981f050709edf0d3f">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gsheet)</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>df4 <span class="ot">&lt;-</span> <span class="fu">gsheet2tbl</span> (<span class="st">"https://docs.google.com/spreadsheets/d/1bq2N19DcZdtax2fQW9OHSGMR0X2__Z9T/edit?gid=959387827#gid=959387827"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -279,7 +279,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h2 class="anchored" data-anchor-id="gráficos-em-ggplot">Gráficos em ggplot</h2>
 <p>Podemos utilizar a biblioteca ggplot2 para vizualizar dados. A função necessária nesse caso é a ggplot. A programação de gráficos em ggplot2 é feito na forma de camadas, que são adicionadas à medida que se confecciona o gráfico.</p>
 <p>A função <code>geom_jitter()</code> irá criar um gráfico de pontos, sendo que esses pontos serão plotados de forma dispersa para não haver sobreposição de dados. Já a função <code>geom_boxplot()</code> irá criar um gráfico do tipo boxplot com os dados. Utilizamos “color =” para definir a coloração dos pontos, “shape =” para definir o formato e “size =” para definir o tamanho. A função <code>outlier.colour = NA</code>é utilizada para que os pontos outlier não apareçam no boxplot.</p>
-<div class="cell" data-hash="Aula2_cache/html/unnamed-chunk-5_fecb78f27720534fe5be8e7a088f2709">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>df4 <span class="sc">%&gt;%</span> </span>
@@ -296,7 +296,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_jitter</span>(<span class="at">width =</span> <span class="fl">0.05</span>, <span class="at">color =</span> <span class="st">"black"</span>, <span class="at">shape =</span> <span class="dv">2</span>, <span class="at">size =</span> <span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Para adicionar anotações ao gráfico utilizamos a função <code>labs()</code>.</p>
-<div class="cell" data-hash="Aula2_cache/html/unnamed-chunk-6_5ad879012c000a8c8e4bc021684afba5">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>g2 <span class="sc">+</span> <span class="fu">theme_classic</span>() <span class="sc">+</span> <span class="fu">labs</span>(<span class="at">x=</span><span class="st">"tratamento"</span>, <span class="at">y=</span> <span class="st">"comprimento (nm)"</span>, <span class="at">title=</span> <span class="st">"meu primeiro ggplot"</span>, <span class="at">caption=</span><span class="st">"fonte: Dados diversos"</span>) <span class="sc">+</span> <span class="fu">scale_y_continuous</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">2</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="Aula2_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid" width="672"></p>
@@ -307,7 +307,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <p>Para salvar o gráfico, utilizamos a função <code>ggsave()</code>.</p>
-<div class="cell" data-hash="Aula2_cache/html/unnamed-chunk-7_32c6d239e11e40a715b5d23a5fc66864">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="st">"plot1.png"</span>, <span class="at">bg=</span> <span class="st">"white"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 

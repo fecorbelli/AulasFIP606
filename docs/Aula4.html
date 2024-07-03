@@ -238,7 +238,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="usando-datapasta" class="level1">
 <h1>Usando datapasta</h1>
 <p>O comando <strong>datapasta</strong> permite copiar vetores de outros locais e colar diretamente no programa. As opções de colagem se encontram no menu “Addins”.</p>
-<div class="cell" data-hash="Aula4_cache/html/unnamed-chunk-1_c9aaf9d891471fda882f9acb3097b47c">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>dat <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">stringsAsFactors =</span> <span class="cn">FALSE</span>,</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>              <span class="at">trat =</span> <span class="fu">c</span>(<span class="st">"Mg2"</span>,<span class="st">"Mg2"</span>,<span class="st">"Mg2"</span>,<span class="st">"Mg2"</span>,</span>
@@ -277,7 +277,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <p>Exemplo utilizando os dados da tabela “dados.diversos” e o comando “paste as tribble”.</p>
-<div class="cell" data-hash="Aula4_cache/html/unnamed-chunk-2_587922d9a300b208c314ac924215e709">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>dat2 <span class="ot">&lt;-</span> tibble<span class="sc">::</span><span class="fu">tribble</span>(</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>              <span class="sc">~</span>trat, <span class="sc">~</span>rep, <span class="sc">~</span>comp,</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>              <span class="st">"Mg2"</span>,   1L,     <span class="dv">9</span>,</span>
@@ -330,7 +330,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <p>Exemplo utilizando o comando “paste as tribble” a partir de dados disponíveis em uma página na internet.</p>
-<div class="cell" data-hash="Aula4_cache/html/unnamed-chunk-3_71b5acdc113b0fed75f9afbf36d08185">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>pop <span class="ot">&lt;-</span> tibble<span class="sc">::</span><span class="fu">tribble</span>(</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="sc">~</span><span class="st">`</span><span class="at">Pos.    País    População   Área.(km²)  Densidade.(habitantes.por.km²)</span><span class="st">`</span>,</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>                                <span class="st">"0</span><span class="sc">\t</span><span class="st"> Macau</span><span class="sc">\t</span><span class="st">649 335</span><span class="sc">\t</span><span class="st">28,6</span><span class="sc">\t</span><span class="st">22 402"</span>,</span>
@@ -352,7 +352,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="remodelar-dados-para-formato-longo" class="level1">
 <h1>Remodelar dados para formato longo</h1>
 <p>Quando os dados se encontram em formato largo é interessante fazer a remodelação dos dados para posteriormente criar um gráfico. Para isso utilizamos a função <code>pivot_longer()</code>.</p>
-<div class="cell" data-hash="Aula4_cache/html/unnamed-chunk-4_8a18519b30c11fda2038d0c4357d1af7">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>pepper <span class="ot">&lt;-</span> </span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tribble</span>(</span>
@@ -389,7 +389,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <section id="visualização-gráfica" class="level2">
 <h2 class="anchored" data-anchor-id="visualização-gráfica">Visualização gráfica</h2>
-<div class="cell" data-hash="Aula4_cache/html/unnamed-chunk-5_2bbbef9ab59f361e78078dd8f9712fdb">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>pepper <span class="sc">%&gt;%</span> </span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="dv">2</span><span class="sc">:</span><span class="dv">4</span>,</span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>               <span class="at">names_to =</span> <span class="st">"epidemic"</span>,</span>
@@ -405,7 +405,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="anotações-em-gráficos" class="level1">
 <h1>Anotações em gráficos</h1>
 <p>Para adicionar textos aos gráficos em posições específicas podemos utilizar a função <code>annotate()</code> com os argumentos geom = “text”, x= e y= para o posicionamento e o que deve ser adicionado em label =.</p>
-<div class="cell" data-hash="Aula4_cache/html/unnamed-chunk-6_961f99b633711e930735a46e18d01887">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>pepper <span class="sc">%&gt;%</span> </span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="dv">2</span><span class="sc">:</span><span class="dv">4</span>,</span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>               <span class="at">names_to =</span> <span class="st">"epidemic"</span>,</span>
@@ -435,7 +435,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="tabela-de-contingência" class="level1">
 <h1>Tabela de Contingência</h1>
 <p>Para contabilizar o número de observaçõs de detrminado dado podemos utilizar a função <code>count()</code> ou <code>tabyl()</code> do pacote janitor.</p>
-<div class="cell" data-hash="Aula4_cache/html/unnamed-chunk-7_2740437dd9f5f473b544d946b6a9e7ba">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>cr <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"https://raw.githubusercontent.com/emdelponte/paper-coffee-rust-Ethiopia/master/data/survey_clean.csv"</span>)</span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="co"># formato longo</span></span>
@@ -485,7 +485,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="visualização" class="level1">
 <h1>Visualização</h1>
 <p>Para criação de um gráfico de barras utilizamos a função <code>geom_col()</code>. Para visualização dos grupos lado a lado utilizamos position = “dodge2”, já para visualização empilhada utilizamos position = “stack”.</p>
-<div class="cell" data-hash="Aula4_cache/html/unnamed-chunk-8_391d19b798c3aaf7d1e380c074993d82">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggthemes)</span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>cr <span class="sc">%&gt;%</span>  </span>
 <span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(farm_management, cultivar) <span class="sc">%&gt;%</span> </span>
@@ -506,7 +506,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="gráfico-barra-de-erro" class="level1">
 <h1>Gráfico barra de erro</h1>
 <p>Para criar um gráfico de barra de erro utilizamos a função <code>geom_errobar()</code>. Devemos construir antes dessa função uma camada com os dados de média e desvio padrão do conjunto de dados.</p>
-<div class="cell" data-hash="Aula4_cache/html/unnamed-chunk-9_307340cf8a6b0ebf3347e3e15f574f7e">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gsheet)</span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>mg <span class="ot">&lt;-</span> <span class="fu">gsheet2tbl</span>(<span class="st">"https://docs.google.com/spreadsheets/d/1bq2N19DcZdtax2fQW9OHSGMR0X2__Z9T/edit?gid=983033137#gid=983033137"</span>)</span>

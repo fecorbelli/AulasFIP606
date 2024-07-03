@@ -261,7 +261,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="dois-grupos-independentes" class="level2">
 <h2 class="anchored" data-anchor-id="dois-grupos-independentes">Dois grupos independentes</h2>
 <p>Primeiro precisamos importar o conjunto de dados utilizando o pacote gsheet.</p>
-<div class="cell" data-hash="Aula6_cache/html/unnamed-chunk-1_fe9c51bdb7227b28ae48d95dd8441635">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gsheet)</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>mg <span class="ot">&lt;-</span> <span class="fu">gsheet2tbl</span>(<span class="st">"https://docs.google.com/spreadsheets/d/1bq2N19DcZdtax2fQW9OHSGMR0X2__Z9T/edit#gid=983033137"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -269,7 +269,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="visualização" class="level3">
 <h3 class="anchored" data-anchor-id="visualização">Visualização</h3>
 <p>Utilizamos um gráfico boxplot para uma visualização inicial dos dados e observação de características do conjunto.</p>
-<div class="cell" data-hash="Aula6_cache/html/unnamed-chunk-2_7d6a0edebbed04e80e46e53c05cf7981">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>mg <span class="sc">%&gt;%</span> </span>
@@ -284,7 +284,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h3 class="anchored" data-anchor-id="teste">Teste</h3>
 <p>O teste t é utilizado somente quando há 2 grupos no conjunto de dados. Além disso, é necessário que sejam atendidas as premissas de distribuição normal e a variânça dos grupos sejam homogêneas.</p>
 <p>Para realizar o teste t, os dados precisam se apresentar em grupos separados (formato largo). Assim, é preciso utilizar a função <code>pivot_wider()</code> para o conjunto de dados mg. Para execução do teste t utilizamos a função <code>t.test()</code>.</p>
-<div class="cell" data-hash="Aula6_cache/html/unnamed-chunk-3_c57aa5bde4ae9c2c709463f9d8f230e1">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>mg2 <span class="ot">&lt;-</span> mg <span class="sc">%&gt;%</span> </span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_wider</span>(<span class="at">names_from =</span> trat,</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>              <span class="at">values_from =</span> comp)</span>
@@ -302,7 +302,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="verificar-premissas" class="level3">
 <h3 class="anchored" data-anchor-id="verificar-premissas">Verificar premissas</h3>
 <p>A função <code>shapiro.test()</code> testa se a distribuição é normal. Se pvalor é maior que 0,05, então não rejeita Ho e assume que há normalidade.</p>
-<div class="cell" data-hash="Aula6_cache/html/unnamed-chunk-4_fcbfde9c38fe60033761fe5e61950d91">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">shapiro.test</span>(mg2<span class="sc">$</span>control)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
@@ -321,7 +321,7 @@ W = 0.97269, p-value = 0.9146</code></pre>
 </div>
 </div>
 <p>A função <code>var.test()</code> é utilizada para verificar se as variânças são homogêneas. Quando pvalor é maior que 0,05, então não rejeita Ho e assume que as variânças são homogêneas.</p>
-<div class="cell" data-hash="Aula6_cache/html/unnamed-chunk-5_188ec8b9db7745dd3c390c32a31f4a93">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">var.test</span>(mg2<span class="sc">$</span>control, mg2<span class="sc">$</span>Mg2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
@@ -338,7 +338,7 @@ ratio of variances
 </div>
 </div>
 <p>Uma outra forma de verificar normalidade é utilizando as funções gráficas <code>qqnorm()</code> e <code>qqline()</code>. Será um indicativo visual de normalidade, em que, se a maioria dos pontos estiverem sobre a linha há indicativo de normalidade.</p>
-<div class="cell" data-hash="Aula6_cache/html/unnamed-chunk-6_0961591e10ef03cc8ef6744f4c7ece4e">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">qqnorm</span>(mg2<span class="sc">$</span>control)</span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="fu">qqline</span>(mg2<span class="sc">$</span>control)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
@@ -349,7 +349,7 @@ ratio of variances
 <section id="texto-complementar" class="level3">
 <h3 class="anchored" data-anchor-id="texto-complementar">Texto complementar</h3>
 <p>Para criar um texto a respeito dos resultados do teste, pode-se utilizar o pacote <strong>report</strong> com a função <code>report()</code>.</p>
-<div class="cell" data-hash="Aula6_cache/html/unnamed-chunk-7_a3a9083ff0abdf2d9f65a50df55361ab">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(report)</span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="fu">report</span> (teste1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -369,13 +369,13 @@ negative, statistically significant, and large (difference = -5.16, 95% CI
 <p>Quando há dois grupos dependentes, deve ser realizado o teste t pareado.</p>
 <section id="importação-dos-dados" class="level3">
 <h3 class="anchored" data-anchor-id="importação-dos-dados">Importação dos dados</h3>
-<div class="cell" data-hash="Aula6_cache/html/unnamed-chunk-8_11a046ddd9f353669953aeebf53de7a4">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>escala <span class="ot">&lt;-</span> <span class="fu">gsheet2tbl</span>(<span class="st">"https://docs.google.com/spreadsheets/d/1bq2N19DcZdtax2fQW9OHSGMR0X2__Z9T/edit#gid=1729131173"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="visualização-1" class="level3">
 <h3 class="anchored" data-anchor-id="visualização-1">Visualização</h3>
-<div class="cell" data-hash="Aula6_cache/html/unnamed-chunk-9_b376ea44b178bafa947db5b74acaa062">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>escala <span class="sc">%&gt;%</span> </span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span> (<span class="fu">aes</span>(assessment, acuracia)) <span class="sc">+</span></span>
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -386,7 +386,7 @@ negative, statistically significant, and large (difference = -5.16, 95% CI
 </section>
 <section id="modificação-para-formato-largo" class="level3">
 <h3 class="anchored" data-anchor-id="modificação-para-formato-largo">Modificação para formato largo</h3>
-<div class="cell" data-hash="Aula6_cache/html/unnamed-chunk-10_cba846e6ead429e4e3760b8ab4c2e3d7">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>escala2 <span class="ot">&lt;-</span> escala <span class="sc">%&gt;%</span> </span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(assessment, rater, acuracia) <span class="sc">%&gt;%</span> </span>
 <span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_wider</span>(<span class="at">names_from =</span> assessment,</span>
@@ -396,7 +396,7 @@ negative, statistically significant, and large (difference = -5.16, 95% CI
 <section id="verificação-de-premissas-e-teste-t" class="level3">
 <h3 class="anchored" data-anchor-id="verificação-de-premissas-e-teste-t">Verificação de premissas e teste t</h3>
 <p>No caso do teste t pareado, adicionamos paired = TRUE ao script do teste.</p>
-<div class="cell" data-hash="Aula6_cache/html/unnamed-chunk-11_1dce64b673bef7149a25438988e69cab">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Verificar se há normalidade</span></span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="fu">shapiro.test</span>(escala2<span class="sc">$</span>Unaided)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -455,7 +455,7 @@ mean difference
 <section id="teste-1" class="level3">
 <h3 class="anchored" data-anchor-id="teste-1">Teste</h3>
 <p>Wilcox test é o equivalente não paramétrico do teste t. Utilizamos a função <code>wilcox.test()</code>.</p>
-<div class="cell" data-hash="Aula6_cache/html/unnamed-chunk-12_95ab63365634fa5ce718b4713256de09">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">wilcox.test</span>(escala2<span class="sc">$</span>Aided1,</span>
 <span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>            escala2<span class="sc">$</span>Unaided,</span>
 <span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>            <span class="at">paired =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -475,13 +475,13 @@ alternative hypothesis: true location shift is not equal to 0</code></pre>
 <p>Quando há três ou mais grupos de dados, realizamos uma análise de variânça (ANOVA). A ANOVA irá verificar se pelo menos uma das médias difere das demais.</p>
 <section id="importação-dos-dados-1" class="level3">
 <h3 class="anchored" data-anchor-id="importação-dos-dados-1">Importação dos dados</h3>
-<div class="cell" data-hash="Aula6_cache/html/unnamed-chunk-13_46e8562c9a6003ac1ca25468e9aef30a">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>micelial <span class="ot">&lt;-</span> <span class="fu">gsheet2tbl</span>(<span class="st">"https://docs.google.com/spreadsheets/d/1bq2N19DcZdtax2fQW9OHSGMR0X2__Z9T/edit#gid=959387827"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="visualização-2" class="level3">
 <h3 class="anchored" data-anchor-id="visualização-2">Visualização</h3>
-<div class="cell" data-hash="Aula6_cache/html/unnamed-chunk-14_62dc5055b770c1d8ed22dbb14ee5f82c">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>micelial <span class="sc">%&gt;%</span>  </span>
 <span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span> (<span class="fu">aes</span>(especie, tcm)) <span class="sc">+</span></span>
 <span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_jitter</span>(<span class="at">width =</span> <span class="fl">0.05</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -493,7 +493,7 @@ alternative hypothesis: true location shift is not equal to 0</code></pre>
 <section id="anova" class="level3">
 <h3 class="anchored" data-anchor-id="anova">ANOVA</h3>
 <p>Os dados devem ser ajustados para o modelo de ANOVA por meio da função <code>lm()</code> e o teste em si é realizado por meio da função <code>anova()</code>. A função <code>summary</code> permite a visualização de um resumo estatistico do teste.</p>
-<div class="cell" data-hash="Aula6_cache/html/unnamed-chunk-15_8216b3d2ba8090ef9dd74dc5ca78770c">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>m1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(tcm <span class="sc">~</span> especie, <span class="at">data =</span> micelial)</span>
 <span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(m1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -537,7 +537,7 @@ F-statistic: 19.63 on 4 and 25 DF,  p-value: 2.028e-07</code></pre>
 <section id="verificação-de-premissas" class="level3">
 <h3 class="anchored" data-anchor-id="verificação-de-premissas">Verificação de premissas</h3>
 <p>Na análise de variânça utilizamos a função <code>shapiro.test()</code> para verificação da normalidade e a função <code>bartlett.test()</code> para verificação da homogeneidade da variânça.</p>
-<div class="cell" data-hash="Aula6_cache/html/unnamed-chunk-16_8cc08583ff4fea35b85c6b06c54890dd">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="fu">shapiro.test</span>(m1<span class="sc">$</span>residuals)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
@@ -560,7 +560,7 @@ Bartlett's K-squared = 4.4367, df = 4, p-value = 0.3501</code></pre>
 <section id="grupos-distintos" class="level3">
 <h3 class="anchored" data-anchor-id="grupos-distintos">Grupos distintos</h3>
 <p>Para verificar os grupos que são distintos estatisticamente, primeiro calculamos as médias dos grupos por meio da função <code>emmeans()</code> do pacote <strong>emmeans</strong>. Depois utilizamos a função <code>cld()</code>do pacote <strong>multcomp</strong> para visualizar os grupamentos distintos.</p>
-<div class="cell" data-hash="Aula6_cache/html/unnamed-chunk-17_e8c68acf70d485c7ce5a7b9beedc7222">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(emmeans)</span>
 <span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>medias1 <span class="ot">&lt;-</span> <span class="fu">emmeans</span>(m1, <span class="sc">~</span> especie)</span>
 <span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -588,7 +588,7 @@ NOTE: If two or more means share the same grouping symbol,
 <h3 class="anchored" data-anchor-id="outras-formas-de-verificação-das-premissas">Outras formas de verificação das premissas</h3>
 <p>Podemos analisar de forma gráfica as premissas por meio da função <code>plot (simulateResiduals())</code> do pacote <strong>DHARMa</strong> ou pela função <code>check_model()</code> do pacote <strong>see</strong>.</p>
 <p>Também podemos verificar as premissas diretamente pelas funções <code>check_normality()</code> e <code>check_heteroscedasticity()</code> do pacote <strong>performance</strong>.</p>
-<div class="cell" data-hash="Aula6_cache/html/unnamed-chunk-18_538b11ff9eb4898e702934a2f724d631">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span> (DHARMa)</span>
 <span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">simulateResiduals</span>(m1))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">

@@ -241,14 +241,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h1>Anova em blocos</h1>
 <section id="importação-conjunto-de-dados" class="level3">
 <h3 class="anchored" data-anchor-id="importação-conjunto-de-dados">Importação conjunto de dados</h3>
-<div class="cell" data-hash="Aula8_cache/html/unnamed-chunk-1_0814333dace7d9ceb8e9031aae3b3f9b">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gsheet)</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>soja <span class="ot">&lt;-</span> <span class="fu">gsheet2tbl</span>(<span class="st">"https://docs.google.com/spreadsheets/d/1bq2N19DcZdtax2fQW9OHSGMR0X2__Z9T/edit#gid=866852711"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Para considerar o bloco como um fator devemos utilizar a função <code>mutate()</code>.</p>
-<div class="cell" data-hash="Aula8_cache/html/unnamed-chunk-2_a871c314d37c5516bfb096c599852d0f">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>soja <span class="ot">&lt;-</span> soja <span class="sc">%&gt;%</span> </span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">TRAT =</span> <span class="fu">as.factor</span>(TRAT),</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>         <span class="at">BLOCO =</span> <span class="fu">as.factor</span>(BLOCO))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -256,7 +256,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="visualização-inicial" class="level3">
 <h3 class="anchored" data-anchor-id="visualização-inicial">Visualização inicial</h3>
-<div class="cell" data-hash="Aula8_cache/html/unnamed-chunk-3_f363eb7cbb36466fb75f63639418ac7a">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(Hmisc)</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>dfc <span class="ot">&lt;-</span> soja <span class="sc">%&gt;%</span></span>
@@ -285,7 +285,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="anova-variável-dfc" class="level3">
 <h3 class="anchored" data-anchor-id="anova-variável-dfc">Anova variável DFC</h3>
 <p>No execução da ANOVA devemos considerar o bloco como elemento da análise “+ BLOCO”.</p>
-<div class="cell" data-hash="Aula8_cache/html/unnamed-chunk-4_46818ebeb75328e17ee55d2366b8ba84">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>aov_dfc <span class="ot">&lt;-</span> <span class="fu">lm</span>(DFC <span class="sc">~</span> TRAT <span class="sc">+</span> BLOCO,</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>              <span class="at">data =</span> soja)</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -305,7 +305,7 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 </div>
 <section id="verificação-das-premissas-e-discriminação-dos-grupos" class="level4">
 <h4 class="anchored" data-anchor-id="verificação-das-premissas-e-discriminação-dos-grupos">Verificação das premissas e discriminação dos grupos</h4>
-<div class="cell" data-hash="Aula8_cache/html/unnamed-chunk-5_5cf642631fadedaedcfc41ffbdce0d28">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(performance)</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="fu">check_normality</span>(aov_dfc)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -377,7 +377,7 @@ NOTE: If two or more means share the same grouping symbol,
 </section>
 <section id="anova-variável-fer" class="level3">
 <h3 class="anchored" data-anchor-id="anova-variável-fer">Anova variável FER</h3>
-<div class="cell" data-hash="Aula8_cache/html/unnamed-chunk-6_deba90fb572842258c9a049eba519aeb">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>aov_fer <span class="ot">&lt;-</span> <span class="fu">lm</span>(FER <span class="sc">~</span> TRAT <span class="sc">+</span> BLOCO,</span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>              <span class="at">data =</span> soja)</span>
 <span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -396,7 +396,7 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 </div>
 <section id="verificação-das-premissas-e-discriminação-dos-grupos-1" class="level4">
 <h4 class="anchored" data-anchor-id="verificação-das-premissas-e-discriminação-dos-grupos-1">Verificação das premissas e discriminação dos grupos</h4>
-<div class="cell" data-hash="Aula8_cache/html/unnamed-chunk-7_8a95a72895449ae43a7799098414cc6c">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(performance)</span>
 <span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="fu">check_normality</span>(aov_fer)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -471,7 +471,7 @@ NOTE: If two or more means share the same grouping symbol,
 </section>
 <section id="transformação-variável-fer" class="level4">
 <h4 class="anchored" data-anchor-id="transformação-variável-fer">Transformação variável FER</h4>
-<div class="cell" data-hash="Aula8_cache/html/unnamed-chunk-8_56192eb0153b6761b5bbbc88dd60dff2">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(MASS)</span>
 <span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>b <span class="ot">&lt;-</span> <span class="fu">boxcox</span>(<span class="fu">lm</span>(soja<span class="sc">$</span>FER <span class="sc">~</span> <span class="dv">1</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
@@ -503,7 +503,7 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 </section>
 <section id="verificação-das-premissas-e-discriminação-dos-grupos-com-os-dados-transformados" class="level4">
 <h4 class="anchored" data-anchor-id="verificação-das-premissas-e-discriminação-dos-grupos-com-os-dados-transformados">Verificação das premissas e discriminação dos grupos com os dados transformados</h4>
-<div class="cell" data-hash="Aula8_cache/html/unnamed-chunk-9_2888d83d46f82f430a582f3ded4a8d5d">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(performance)</span>
 <span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a><span class="fu">check_normality</span>(aov_fer2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -562,7 +562,7 @@ NOTE: If two or more means share the same grouping symbol,
 </section>
 <section id="anova-variável-produção" class="level3">
 <h3 class="anchored" data-anchor-id="anova-variável-produção">Anova variável produção</h3>
-<div class="cell" data-hash="Aula8_cache/html/unnamed-chunk-10_edd1d40be82fac51da3d52848363d551">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a>aov_prod <span class="ot">&lt;-</span> <span class="fu">lm</span>(PROD <span class="sc">~</span> TRAT <span class="sc">+</span> BLOCO,</span>
 <span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a>              <span class="at">data =</span> soja)</span>
 <span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -581,7 +581,7 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 </div>
 <section id="verificação-das-premissas-e-discriminação-dos-grupos-2" class="level4">
 <h4 class="anchored" data-anchor-id="verificação-das-premissas-e-discriminação-dos-grupos-2">Verificação das premissas e discriminação dos grupos</h4>
-<div class="cell" data-hash="Aula8_cache/html/unnamed-chunk-11_27d2b4c762352127d707fae2abf2873a">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(performance)</span>
 <span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a><span class="fu">check_normality</span>(aov_prod)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -632,7 +632,7 @@ Lower triangle: Comparisons (estimate)   earlier vs. later</code></pre>
 </section>
 <section id="visualização-produção" class="level4">
 <h4 class="anchored" data-anchor-id="visualização-produção">Visualização produção</h4>
-<div class="cell" data-hash="Aula8_cache/html/unnamed-chunk-12_4a485a63ecc35df1a0d8a0123f645a41">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb55"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a>df_prod <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(medias_prod_grupo)</span>
 <span id="cb55-2"><a href="#cb55-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb55-3"><a href="#cb55-3" aria-hidden="true" tabindex="-1"></a>df_prod <span class="sc">%&gt;%</span> </span>
@@ -715,7 +715,7 @@ Lower triangle: Comparisons (estimate)   earlier vs. later</code></pre>
 </section>
 <section id="importação-de-outro-conjunto-de-dados" class="level3">
 <h3 class="anchored" data-anchor-id="importação-de-outro-conjunto-de-dados">Importação de outro conjunto de dados</h3>
-<div class="cell" data-hash="Aula8_cache/html/unnamed-chunk-13_01b00f4905b265dc44a95b2e0935ab85">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb57"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gsheet)</span>
 <span id="cb57-2"><a href="#cb57-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb57-3"><a href="#cb57-3" aria-hidden="true" tabindex="-1"></a>curv <span class="ot">&lt;-</span> <span class="fu">gsheet2tbl</span>(<span class="st">"https://docs.google.com/spreadsheets/d/1bq2N19DcZdtax2fQW9OHSGMR0X2__Z9T/edit#gid=1807247585"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -723,7 +723,7 @@ Lower triangle: Comparisons (estimate)   earlier vs. later</code></pre>
 </section>
 <section id="sumarização-e-visualização" class="level3">
 <h3 class="anchored" data-anchor-id="sumarização-e-visualização">Sumarização e Visualização</h3>
-<div class="cell" data-hash="Aula8_cache/html/unnamed-chunk-14_4771e8b6f98d4af3e2c168585fe17b9f">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb58"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a>curv <span class="sc">%&gt;%</span> </span>
 <span id="cb58-2"><a href="#cb58-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(Irrigation) <span class="sc">%&gt;%</span> </span>
 <span id="cb58-3"><a href="#cb58-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">sev_mean =</span> <span class="fu">mean</span>(severity),<span class="at">sev_med =</span> <span class="fu">median</span>(severity), <span class="at">sd_mean =</span> <span class="fu">sd</span>(severity))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -750,7 +750,7 @@ Lower triangle: Comparisons (estimate)   earlier vs. later</code></pre>
 <section id="cálculo-da-área-abaixo-da-curva-de-progresso-da-doença-audpc" class="level2">
 <h2 class="anchored" data-anchor-id="cálculo-da-área-abaixo-da-curva-de-progresso-da-doença-audpc">Cálculo da área abaixo da curva de progresso da doença (AUDPC)</h2>
 <p>A AUDPC é uma medida utilizada para quantificar e comparar o progresso de doenças em plantas ao longo do tempo. A curva do progresso da doença apresenta o tempo no eixo x e a variável de interesse no eixo y. Utilizamos o elemento <code>AUDPC()</code> na camada summarise.</p>
-<div class="cell" data-hash="Aula8_cache/html/unnamed-chunk-15_055f1f054b07f7f1175e6938ca5341e0">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb61"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb61-1"><a href="#cb61-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(epifitter)</span>
 <span id="cb61-2"><a href="#cb61-2" aria-hidden="true" tabindex="-1"></a>curv2 <span class="ot">&lt;-</span> curv <span class="sc">%&gt;%</span> </span>
 <span id="cb61-3"><a href="#cb61-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(Irrigation, rep) <span class="sc">%&gt;%</span> </span>

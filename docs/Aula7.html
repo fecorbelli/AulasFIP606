@@ -256,7 +256,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="conjunto-de-dados" class="level2">
 <h2 class="anchored" data-anchor-id="conjunto-de-dados">Conjunto de dados</h2>
 <p>Utilizando um conjunto de dados disponível no pacote nativo do programa</p>
-<div class="cell" data-hash="Aula7_cache/html/unnamed-chunk-1_be2f896cd7c405bdf4bae9385eeeba16">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>inseticida <span class="ot">&lt;-</span> InsectSprays</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>?InsectSprays</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -277,7 +277,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="visualização-inicial" class="level2">
 <h2 class="anchored" data-anchor-id="visualização-inicial">Visualização inicial</h2>
-<div class="cell" data-hash="Aula7_cache/html/unnamed-chunk-2_212dc890b78cc1cc925f64d368699fec">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>inseticida <span class="sc">%&gt;%</span> </span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(spray,count)) <span class="sc">+</span></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -288,7 +288,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="anova" class="level2">
 <h2 class="anchored" data-anchor-id="anova">Anova</h2>
-<div class="cell" data-hash="Aula7_cache/html/unnamed-chunk-3_fa371e917f149ed906401dc5a1e8bb9e">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>m1 <span class="ot">&lt;-</span> <span class="fu">lm</span> (count <span class="sc">~</span> spray, <span class="at">data =</span> inseticida)</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span> (m1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -331,7 +331,7 @@ F-statistic:  34.7 on 5 and 66 DF,  p-value: &lt; 2.2e-16</code></pre>
 </section>
 <section id="verificação-das-premissas" class="level2">
 <h2 class="anchored" data-anchor-id="verificação-das-premissas">Verificação das premissas</h2>
-<div class="cell" data-hash="Aula7_cache/html/unnamed-chunk-4_20f94c600534a27d644c1cb8e6d6a79f">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>m1<span class="sc">$</span>residuals</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>          1           2           3           4           5           6 
@@ -407,14 +407,14 @@ Bartlett's K-squared = 25.96, df = 5, p-value = 9.085e-05</code></pre>
 <section id="transformação-do-conjunto-de-dados" class="level2">
 <h2 class="anchored" data-anchor-id="transformação-do-conjunto-de-dados">Transformação do conjunto de dados</h2>
 <p>Podemos transformar os dados de diferentes maneiras, sendo as mais comuns log e raiz quadrada. O conjunto inseticida apresenta variáveis resposta do tipo númerica discreta e, normalmente, a transformação para raiz quadrada é uma boa opção. Para a transformação utilizamos a função <code>mutate()</code> e o argumento <code>sqrt()</code>.</p>
-<div class="cell" data-hash="Aula7_cache/html/unnamed-chunk-5_3e6a7d25b426078f1d5f106fe957fe19">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>inseticida <span class="ot">&lt;-</span> inseticida <span class="sc">%&gt;%</span> </span>
 <span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">count2 =</span> <span class="fu">sqrt</span>(count))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="anova-e-verificação-das-premissas-com-o-conjunto-transformado" class="level2">
 <h2 class="anchored" data-anchor-id="anova-e-verificação-das-premissas-com-o-conjunto-transformado">Anova e verificação das premissas com o conjunto transformado</h2>
-<div class="cell" data-hash="Aula7_cache/html/unnamed-chunk-6_51070dd1bfe83818f90de63face3d890">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>m2 <span class="ot">&lt;-</span> <span class="fu">lm</span> (count2 <span class="sc">~</span> spray,</span>
 <span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>          <span class="at">data =</span> inseticida)</span>
 <span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(m2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -524,7 +524,7 @@ Bartlett's K-squared = 3.7525, df = 5, p-value = 0.5856</code></pre>
 <section id="transformação-box-cox" class="level3">
 <h3 class="anchored" data-anchor-id="transformação-box-cox">Transformação box-cox</h3>
 <p>A transformação tipo Box-Cox é utilizada para melhorar a adequação dos dados aos pressupostos de normalidade e homogeneidade de variância. A transformação de Box-Cox é definida pela seguinte equação: y(lambda) = (x^lambda - 1) / lambda. Para encontrar o valor de lambda (valor de x quando y é maximo) utilizamos o pacote <strong>MASS</strong></p>
-<div class="cell" data-hash="Aula7_cache/html/unnamed-chunk-7_8d4c73aa7943fa59213383bf7dec5119">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(MASS)</span>
 <span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>B <span class="ot">&lt;-</span> <span class="fu">boxcox</span>(<span class="fu">lm</span>(inseticida<span class="sc">$</span>count<span class="fl">+0.1</span> <span class="sc">~</span> <span class="dv">1</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
@@ -556,7 +556,7 @@ Bartlett's K-squared = 3.7525, df = 5, p-value = 0.5856</code></pre>
 <section id="discriminação-dos-tratamentos-com-médias-distintas-estatisticamente" class="level2">
 <h2 class="anchored" data-anchor-id="discriminação-dos-tratamentos-com-médias-distintas-estatisticamente">Discriminação dos tratamentos com médias distintas estatisticamente</h2>
 <p>Avaliação com o conjunto de dados original e os dados transformados para comparação de discriminação dos grupos.</p>
-<div class="cell" data-hash="Aula7_cache/html/unnamed-chunk-8_d6471bfcf0b5292b53e3e0e6c2c72af7">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(emmeans)</span>
 <span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a>m1_medias <span class="ot">&lt;-</span> <span class="fu">emmeans</span>(m1, <span class="sc">~</span> spray)</span>
 <span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(m1_medias)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -657,7 +657,7 @@ P value adjustment: tukey method for comparing a family of 6 estimates </code></
 <section id="estatística-não-paramétrica" class="level2">
 <h2 class="anchored" data-anchor-id="estatística-não-paramétrica">Estatística não paramétrica</h2>
 <p>O teste Kruskal é o equivalente não paramétrico da ANOVA. Para realizar a análise é utilizada a função <code>kruskal.test()</code>.</p>
-<div class="cell" data-hash="Aula7_cache/html/unnamed-chunk-9_14079be36322348b35d803b2d3b29d59">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb55"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a><span class="fu">kruskal.test</span>(count <span class="sc">~</span> spray,</span>
 <span id="cb55-2"><a href="#cb55-2" aria-hidden="true" tabindex="-1"></a>             <span class="at">data =</span> inseticida)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -714,7 +714,7 @@ attr(,"class")
 <h1>Alternativa 3 - GLMs</h1>
 <p>O modelo linear generalizado é uma outra forma de ajustar os dados. Nessa análise, o conjunto de dados é ajustado em uma distribuição que se adeque melhor, diferentemente da distribuição normal.</p>
 <p>Utilizamos a função <code>glm()</code> e em “family =” colocamos a família da distribuição que desejamos ajustar os dados. Nesse exemplo os dados de contagem são mais ajustados a distribuição de poisson.</p>
-<div class="cell" data-hash="Aula7_cache/html/unnamed-chunk-10_49718e75f50d60a3b8e7ce4bb90569cd">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb59"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb59-1"><a href="#cb59-1" aria-hidden="true" tabindex="-1"></a>m4 <span class="ot">&lt;-</span> <span class="fu">glm</span>(count <span class="sc">~</span> spray,</span>
 <span id="cb59-2"><a href="#cb59-2" aria-hidden="true" tabindex="-1"></a>          <span class="at">family =</span> poisson,</span>
 <span id="cb59-3"><a href="#cb59-3" aria-hidden="true" tabindex="-1"></a>          <span class="at">data =</span> inseticida)</span>
@@ -800,14 +800,14 @@ NOTE: If two or more means share the same grouping symbol,
 <h1>Anova fatorial</h1>
 <section id="importação-do-conjunto-de-dados" class="level3">
 <h3 class="anchored" data-anchor-id="importação-do-conjunto-de-dados">Importação do conjunto de dados</h3>
-<div class="cell" data-hash="Aula7_cache/html/unnamed-chunk-11_db887e2f7cf01b608df180eea6fa8615">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb68"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb68-1"><a href="#cb68-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gsheet)</span>
 <span id="cb68-2"><a href="#cb68-2" aria-hidden="true" tabindex="-1"></a>li <span class="ot">&lt;-</span> <span class="fu">gsheet2tbl</span>(<span class="st">"https://docs.google.com/spreadsheets/d/1bq2N19DcZdtax2fQW9OHSGMR0X2__Z9T/edit#gid=2023059672"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="visualização-inicial-1" class="level3">
 <h3 class="anchored" data-anchor-id="visualização-inicial-1">Visualização inicial</h3>
-<div class="cell" data-hash="Aula7_cache/html/unnamed-chunk-12_3fed317a69655ca0438a155bcb43d28a">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb69"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb69-1"><a href="#cb69-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
 <span id="cb69-2"><a href="#cb69-2" aria-hidden="true" tabindex="-1"></a>li <span class="sc">%&gt;%</span> </span>
 <span id="cb69-3"><a href="#cb69-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="fu">factor</span>(dose), severity, <span class="at">color =</span> <span class="fu">factor</span>(dose))) <span class="sc">+</span></span>
@@ -821,7 +821,7 @@ NOTE: If two or more means share the same grouping symbol,
 <section id="modelo-fatorial-two-way-anova" class="level2">
 <h2 class="anchored" data-anchor-id="modelo-fatorial-two-way-anova">Modelo fatorial (two-way ANOVA)</h2>
 <p>Na two-way ANOVA devemos utilizar “fator1*fator2” no modelo estatístico.</p>
-<div class="cell" data-hash="Aula7_cache/html/unnamed-chunk-13_30c23eb0bbd3c9db7fb81c97b26f8b9f">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb70"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb70-1"><a href="#cb70-1" aria-hidden="true" tabindex="-1"></a>mf <span class="ot">&lt;-</span> <span class="fu">lm</span> (severity <span class="sc">~</span> treat<span class="sc">*</span><span class="fu">factor</span>(dose),</span>
 <span id="cb70-2"><a href="#cb70-2" aria-hidden="true" tabindex="-1"></a>          <span class="at">data =</span> li)</span>
 <span id="cb70-3"><a href="#cb70-3" aria-hidden="true" tabindex="-1"></a>mf</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -852,7 +852,7 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 </div>
 <section id="verificação-das-premissas-e-discriminação-dos-grupos" class="level3">
 <h3 class="anchored" data-anchor-id="verificação-das-premissas-e-discriminação-dos-grupos">Verificação das premissas e discriminação dos grupos</h3>
-<div class="cell" data-hash="Aula7_cache/html/unnamed-chunk-14_bb9e6cbf612d9270d90fec57d935dee5">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb74"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb74-1"><a href="#cb74-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(DHARMa)</span>
 <span id="cb74-2"><a href="#cb74-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">simulateResiduals</span>(mf))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">

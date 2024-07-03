@@ -242,7 +242,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="importando-os-dados" class="level2">
 <h2 class="anchored" data-anchor-id="importando-os-dados">Importando os dados</h2>
 <p>Quando o conjunto de dados está em um arquivo csv na web, podemos utilizar a função <code>read_csv("endereço na web")</code> para importar os dados para o programa.</p>
-<div class="cell" data-hash="Aula3_cache/html/unnamed-chunk-1_2e789601fea26e2d03f35b0b815abc78">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span> (tidyverse)</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>cr <span class="ot">&lt;-</span> <span class="fu">read_csv</span> (<span class="st">"https://raw.githubusercontent.com/emdelponte/paper-coffee-rust-Ethiopia/master/data/survey_clean.csv"</span>)</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -271,7 +271,7 @@ $ sev2            &lt;dbl&gt; 55.57986, 17.90349, 8.25120, 46.10154, 12.25167, 1
 <h1>Visualização de Dados</h1>
 <p>Podemos utilizar a biblioteca ggplot2 para vizualizar os dados do conjunto.</p>
 <p>A função <code>geom_histogram()</code> irá criar um gráfico do tipo histograma com os dados, esse gráfico é indicado para variáveis resposta do tipo númerica contínua. Já a função <code>geom_boxplot()</code> irá criar um gráfico do tipo boxplot com os dados, esse tipo de gráfico apresenta a localização de 50% dos dados, bem como a mediana, quartil inferior e superior.</p>
-<div class="cell" data-hash="Aula3_cache/html/unnamed-chunk-2_9761cc0d849a39c8e0c6bfe71098b7b0">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>cr <span class="sc">%&gt;%</span>  </span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span> (<span class="fu">aes</span>(<span class="at">x=</span>inc))<span class="sc">+</span> <span class="fu">geom_histogram</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
@@ -284,7 +284,7 @@ $ sev2            &lt;dbl&gt; 55.57986, 17.90349, 8.25120, 46.10154, 12.25167, 1
 </div>
 </div>
 <p>A função facet_wrap é adicionada para separar os dados por região.</p>
-<div class="cell" data-hash="Aula3_cache/html/unnamed-chunk-3_70cce11ca6c9e0e445a568bbb00ee30b">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>cr <span class="sc">%&gt;%</span>  </span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span> (<span class="fu">aes</span>(<span class="at">x=</span>inc))<span class="sc">+</span> <span class="fu">geom_histogram</span>()<span class="sc">+</span> <span class="fu">facet_wrap</span>(<span class="sc">~</span>region)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
@@ -300,7 +300,7 @@ $ sev2            &lt;dbl&gt; 55.57986, 17.90349, 8.25120, 46.10154, 12.25167, 1
 <section id="sumarização" class="level1">
 <h1>Sumarização</h1>
 <p>Podemos utilizar a função <code>summary()</code> para obter os valores mínimos e máximos, média, mediana e quartil superior e inferior do conjunto simultaneamente. Podemos utilizar também a função <code>summarise()</code> para encontrar separadamente cada valor, sendo possível encontrar o valor de desvio padrão também. A função <code>group_by()</code> é utilizada para estabelecer como o conjunto de dados será agrupado.</p>
-<div class="cell" data-hash="Aula3_cache/html/unnamed-chunk-4_440ec7812ccb84cfabaf54e0235a3a14">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(cr<span class="sc">$</span>inc)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
@@ -355,7 +355,7 @@ $ sev2            &lt;dbl&gt; 55.57986, 17.90349, 8.25120, 46.10154, 12.25167, 1
 <section id="visualização" class="level1">
 <h1>Visualização</h1>
 <p>Podemos utilizar a biblioteca ggplot2 para vizualizar os dados do conjunto em diferentes formas.</p>
-<div class="cell" data-hash="Aula3_cache/html/unnamed-chunk-5_f57e2b5c20a9f56bb9014ea872e1a171">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>cr <span class="sc">%&gt;%</span> </span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(inc,sev2)) <span class="sc">+</span> <span class="fu">geom_point</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
@@ -397,7 +397,7 @@ $ sev2            &lt;dbl&gt; 55.57986, 17.90349, 8.25120, 46.10154, 12.25167, 1
 <h2 class="anchored" data-anchor-id="personalização-da-visualização-dos-dados">Personalização da Visualização dos dados</h2>
 <p>O pacote <strong>ggthemes</strong> apresenta diversos temas que podem ser utilizados para personalizar os gráficos, bem como possibilidades de personalização dos elementos gráficos.</p>
 <p>Podemos utilizar <code>scale_fill_colorblind()</code> para uma coloração pré-definida para as colunas ou adicionar manualmente as cores desejadas com <code>scale_fill_manual()</code>. Podemos adicionar um tema como, por exemplo, <code>theme_minimal()</code> e adicionar anotações com a função <code>labs()</code>.</p>
-<div class="cell" data-hash="Aula3_cache/html/unnamed-chunk-6_b64a2bf2f0bb3981581245bca3cfe919">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggthemes)</span>
 <span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>cr <span class="sc">%&gt;%</span>  </span>
@@ -438,7 +438,7 @@ $ sev2            &lt;dbl&gt; 55.57986, 17.90349, 8.25120, 46.10154, 12.25167, 1
 <section id="criar-subconjuntos" class="level1">
 <h1>Criar Subconjuntos</h1>
 <p>Podemos utilizar as funções <code>select()</code> e <code>filter()</code> do pacote <strong>dplyr</strong> para selecionar colunas e linhas, respectivamente</p>
-<div class="cell" data-hash="Aula3_cache/html/unnamed-chunk-7_7fbe9316ac053bf36912e5bf9a58aef7">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="co"># filtra Oromia</span></span>
 <span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>cr_oromia <span class="ot">&lt;-</span> cr <span class="sc">%&gt;%</span> </span>
@@ -488,7 +488,7 @@ $ sev2            &lt;dbl&gt; 55.57986, 17.90349, 8.25120, 46.10154, 12.25167, 1
 <section id="visualização-dos-subconjuntos" class="level2">
 <h2 class="anchored" data-anchor-id="visualização-dos-subconjuntos">Visualização dos subconjuntos</h2>
 <p>Criação de gráficos boxplot para cada subconjunto.</p>
-<div class="cell" data-hash="Aula3_cache/html/unnamed-chunk-8_109a831f6f0f36857ac997d5276b0c21">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>p1 <span class="ot">&lt;-</span> cr_oromia <span class="sc">%&gt;%</span> </span>
 <span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(cultivar,sev2, <span class="at">fill =</span> cultivar))<span class="sc">+</span> </span>
 <span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>()<span class="sc">+</span></span>
@@ -498,7 +498,7 @@ $ sev2            &lt;dbl&gt; 55.57986, 17.90349, 8.25120, 46.10154, 12.25167, 1
 <span id="cb31-7"><a href="#cb31-7" aria-hidden="true" tabindex="-1"></a>       <span class="at">y=</span> <span class="st">"Severity (%)"</span>) <span class="sc">+</span></span>
 <span id="cb31-8"><a href="#cb31-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_flip</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell" data-hash="Aula3_cache/html/unnamed-chunk-9_c991e1ccb8c5806382645a88c578ea97">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>p2 <span class="ot">&lt;-</span> cr_pr <span class="sc">%&gt;%</span> </span>
 <span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(cultivar,sev2, <span class="at">fill =</span> cultivar))<span class="sc">+</span> </span>
 <span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>()<span class="sc">+</span></span>
@@ -512,7 +512,7 @@ $ sev2            &lt;dbl&gt; 55.57986, 17.90349, 8.25120, 46.10154, 12.25167, 1
 <section id="juntar-os-gráficos-em-diferentes-posicionamntos" class="level2">
 <h2 class="anchored" data-anchor-id="juntar-os-gráficos-em-diferentes-posicionamntos">Juntar os gráficos em diferentes posicionamntos</h2>
 <p>Para juntar diferentes gráficos em uma mesma imagem podemos utilizar o pacote <strong>patchwork</strong>. Para posicionamento ao lado utilizamos “+” e para posicionamento de um acima ao outro utilizamos “/”.</p>
-<div class="cell" data-hash="Aula3_cache/html/unnamed-chunk-10_aa48d0defaa04282ee99c5dcdc6bfe15">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(patchwork)</span>
 <span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Ao lado</span></span>
@@ -527,7 +527,7 @@ $ sev2            &lt;dbl&gt; 55.57986, 17.90349, 8.25120, 46.10154, 12.25167, 1
 </div>
 </div>
 <p>Para retirar a legenda dplicada devemos adicionar <code>plot_layout(guides = "collect")</code>. E para atribuir letras a cada gráfico utilizamos <code>plot_annotation(tag_levels = "A")</code>.</p>
-<div class="cell" data-hash="Aula3_cache/html/unnamed-chunk-11_85ed00104a71ba13f9416d4d10c02c1b">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Retirar a legenda duplicada</span></span>
 <span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>(p1 <span class="sc">+</span> p2) <span class="sc">+</span></span>
 <span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot_layout</span>(<span class="at">guides =</span> <span class="st">"collect"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -543,12 +543,12 @@ $ sev2            &lt;dbl&gt; 55.57986, 17.90349, 8.25120, 46.10154, 12.25167, 1
 </div>
 </div>
 <p>Para salvar o gráfico, utilizamos a função <code>ggsave()</code>.</p>
-<div class="cell" data-hash="Aula3_cache/html/unnamed-chunk-12_d8ffcfc0807fd41fc632aee7a9529cf7">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="st">"patch1.png"</span>, <span class="at">width =</span> <span class="dv">5</span>, </span>
 <span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>       <span class="at">height =</span> <span class="dv">4</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Para retirar a duplicação de cultivar e severidade nos graficos adicionamos <code>axes = "collect"</code></p>
-<div class="cell" data-hash="Aula3_cache/html/unnamed-chunk-13_d39953e5ebb04fc6a48fe1f1825b8ba4">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>(p1 <span class="sc">/</span> p2) <span class="sc">+</span></span>
 <span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_layout</span>(<span class="at">guides =</span> <span class="st">"collect"</span>,</span>
 <span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a>            <span class="at">axes =</span> <span class="st">"collect"</span> ) <span class="sc">+</span></span>
@@ -558,7 +558,7 @@ $ sev2            &lt;dbl&gt; 55.57986, 17.90349, 8.25120, 46.10154, 12.25167, 1
 </div>
 </div>
 <p>Para atribuir um título geral e fonte aos gráficos, adicionamos <code>plot_annotation(title = "Título", caption = "fonte"</code>.</p>
-<div class="cell" data-hash="Aula3_cache/html/unnamed-chunk-14_a62bbb0c55f80d530873c2c0b5d5a7d4">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>(p1 <span class="sc">/</span> p2) <span class="sc">+</span></span>
 <span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_layout</span>(<span class="at">guides =</span> <span class="st">"collect"</span>,</span>
 <span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a>            <span class="at">axes =</span> <span class="st">"collect"</span> ) <span class="sc">+</span></span>
@@ -573,7 +573,7 @@ $ sev2            &lt;dbl&gt; 55.57986, 17.90349, 8.25120, 46.10154, 12.25167, 1
 <section id="adicionar-um-gráfico-em-um-determinado-posicionamento-de-um-outro-gráfico" class="level2">
 <h2 class="anchored" data-anchor-id="adicionar-um-gráfico-em-um-determinado-posicionamento-de-um-outro-gráfico">Adicionar um gráfico em um determinado posicionamento de um outro gráfico</h2>
 <p>Para adicionar um gráfico ou elemento a outro gráfico em um posicionamento próprio, utilizamos a função <code>inset_element()</code>.</p>
-<div class="cell" data-hash="Aula3_cache/html/unnamed-chunk-15_50df49255051b37f446cb857ec833cca">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>p3 <span class="ot">&lt;-</span> cr_oromia <span class="sc">%&gt;%</span> </span>
 <span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>sev2))<span class="sc">+</span></span>
 <span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>()</span>

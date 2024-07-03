@@ -243,7 +243,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="importando-os-dados" class="level2">
 <h2 class="anchored" data-anchor-id="importando-os-dados">Importando os dados</h2>
 <p>Para importar os dados que iremos trabalhar diretamente da tabela google, devemos utilizar o pacote gsheet e a função gsheet2tb1.</p>
-<div class="cell" data-hash="Aula5_cache/html/unnamed-chunk-1_62a11c43e860a7f06b30880a3c6b79de">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gsheet)</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>sab <span class="ot">&lt;-</span> <span class="fu">gsheet2tbl</span>(<span class="st">"https://docs.google.com/spreadsheets/d/1bq2N19DcZdtax2fQW9OHSGMR0X2__Z9T/edit#gid=1092065531"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -251,7 +251,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="criando-subgrupos" class="level2">
 <h2 class="anchored" data-anchor-id="criando-subgrupos">Criando subgrupos</h2>
 <p>Para separar os dados da primeira e da segunda sabatina, devemos filtrar os dados e criar subconjuntos. Utilizaremos a função filter e criaremos um objeto para cada grupo de dados.</p>
-<div class="cell" data-hash="Aula5_cache/html/unnamed-chunk-2_0c081b1029e5445ef73a535920708f4b">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>prova1 <span class="ot">&lt;-</span> sab <span class="sc">%&gt;%</span> </span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(prova <span class="sc">==</span> <span class="dv">1</span>)</span>
@@ -263,7 +263,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="sumarizando-os-dados" class="level2">
 <h2 class="anchored" data-anchor-id="sumarizando-os-dados">Sumarizando os dados</h2>
 <p>Para obtermos valores de tendência central e dispersão do conjunto de dados, utilizaremos a função summarise para obter os valores de máximo, mínimo, a média amostral, a mediana e o desvio padrão em cada sabatina.</p>
-<div class="cell" data-hash="Aula5_cache/html/unnamed-chunk-3_9628683d670ca9955575501d46e7bda3">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>sab <span class="sc">%&gt;%</span> </span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(prova) <span class="sc">%&gt;%</span> </span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">nota_mean =</span> <span class="fu">mean</span>(nota),<span class="at">nota_med =</span> <span class="fu">median</span>(nota), <span class="at">sd_mean =</span> <span class="fu">sd</span>(nota), <span class="at">nota_max =</span> <span class="fu">max</span>(nota), <span class="at">min_nota =</span> <span class="fu">min</span>(nota))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -280,7 +280,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="explorando-os-dados" class="level2">
 <h2 class="anchored" data-anchor-id="explorando-os-dados">Explorando os dados</h2>
 <p>Para uma análise exploratória inicial e visualização dos dados, utilizarmos o pacote ggplot2 para criarmos diferentes gráficos com os conjuntos de dados.</p>
-<div class="cell" data-hash="Aula5_cache/html/unnamed-chunk-4_5c06bea0a87452065f95f1d9d126d83f">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span> (ggplot2)</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>prova1 <span class="sc">%&gt;%</span> </span>
@@ -320,7 +320,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="customizando-os-gráficos" class="level2">
 <h2 class="anchored" data-anchor-id="customizando-os-gráficos">Customizando os gráficos</h2>
 <p>Para modificarmos a aparência dos gráficos e demonstrar os dados de forma mais didática e com um maior número de informações, customizaremos o script do desenvolvimento dos gráficos do tipo histograma e boxplot.</p>
-<div class="cell" data-hash="Aula5_cache/html/unnamed-chunk-5_27bf191535c5c8b0905515af1f577a70">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span> (ggthemes)</span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="co">#gráficos histograma</span></span>
@@ -350,7 +350,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb10-27"><a href="#cb10-27" aria-hidden="true" tabindex="-1"></a>           <span class="at">x =</span> <span class="dv">79</span>, <span class="at">y =</span> <span class="fl">9.5</span>,</span>
 <span id="cb10-28"><a href="#cb10-28" aria-hidden="true" tabindex="-1"></a>           <span class="at">label =</span> <span class="st">"Mean"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell" data-hash="Aula5_cache/html/unnamed-chunk-6_477a5653db55ff6aaef3b9807a4c05b9">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co">#gráficos boxplot</span></span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>pv12 <span class="ot">&lt;-</span> prova1 <span class="sc">%&gt;%</span> </span>
@@ -375,7 +375,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="juntando-os-gráficos" class="level2">
 <h2 class="anchored" data-anchor-id="juntando-os-gráficos">Juntando os gráficos</h2>
 <p>Para obter os dois gráficos gerados de cada formato em apenas uma imagem, utilizaremos o pacote patchork.</p>
-<div class="cell" data-hash="Aula5_cache/html/unnamed-chunk-7_68cbb2c0cbe4e763f791cd65630cfe8a">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span> (patchwork)</span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>(pv1 <span class="sc">+</span> pv2) <span class="sc">+</span></span>
@@ -386,7 +386,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <p>Podemos observar, pelos gráficos do tipo histograma, que a distribuição das notas dos alunos não apresenta uma distribuição normal.</p>
-<div class="cell" data-hash="Aula5_cache/html/unnamed-chunk-8_8199d3a9c7a6b92699c4a4a6ce25d81f">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>(pv12 <span class="sc">+</span> pv22) <span class="sc">+</span></span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot_layout</span>(<span class="at">guides =</span> <span class="st">"collect"</span>, </span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>              <span class="at">axes =</span> <span class="st">"collect"</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -399,7 +399,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="gráfico-de-barras-de-erro" class="level2">
 <h2 class="anchored" data-anchor-id="gráfico-de-barras-de-erro">Gráfico de barras de erro</h2>
 <p>Para visualizar a variabilidade do conjunto de dados, podemos utilizar uma barra de erro da média amostral em relação ao desvio padrão</p>
-<div class="cell" data-hash="Aula5_cache/html/unnamed-chunk-9_4cfaac1e70c2c53dfa70458e05e25123">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>sab <span class="sc">%&gt;%</span> </span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(prova) <span class="sc">%&gt;%</span> </span>
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">nota_mean =</span> <span class="fu">mean</span>(nota),</span>

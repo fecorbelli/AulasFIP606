@@ -248,7 +248,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h3 class="anchored" data-anchor-id="instalação-de-pacotes">Instalação de pacotes</h3>
 <p>A instalação de pacotes pode ser feita pelo menu ou então com um comando no console. A instalação é feita através do menu em tools &gt; install packages e digitando o nome do pacote para baixar ou usando a função instal.packages(nome do pacote) no console.</p>
 <p>Após realizar a instalação do pacote, ele não estará disponível para uso imediatamente. Para habilitar o pacote para uso, se deve utilizar a função library(nome do pacote).</p>
-<div class="cell" data-hash="Aula1_cache/html/unnamed-chunk-1_afa07aa741591121bf84b037d8881f26">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(epifitter)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
@@ -256,14 +256,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="objetos" class="level2">
 <h2 class="anchored" data-anchor-id="objetos">Objetos</h2>
 <p>Um objeto é um nome que armazena um valor. Para criá-lo utilizamos &lt;- .</p>
-<div class="cell" data-hash="Aula1_cache/html/unnamed-chunk-2_66ac4725b48366b68e2a2f202fedda63">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="dv">10</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> x <span class="sc">*</span> <span class="dv">10</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <section id="conjunto-de-dados" class="level3">
 <h3 class="anchored" data-anchor-id="conjunto-de-dados">Conjunto de dados</h3>
 <p>Para criar um objeto que seja um conjunto de dados numéricos compreendidos em um intervalo, basta utilizar a função c(valor : valor).</p>
-<div class="cell" data-hash="Aula1_cache/html/unnamed-chunk-3_80c831c2edbd65afb76da039ee12ab4c">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>)</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>b <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">11</span><span class="sc">:</span><span class="dv">20</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -272,7 +272,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="data-frame" class="level2">
 <h2 class="anchored" data-anchor-id="data-frame">Data-frame</h2>
 <p>Um data-frame é uma estrutura para armazenar dados e é um objeto bidirecional. Ele pode conter uma mistura de diferentes tipos de dados, mas cada coluna deve ter o mesmo número de observações.</p>
-<div class="cell" data-hash="Aula1_cache/html/unnamed-chunk-4_cc4553efba6c03a2180204c0aad2bd2e">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data.frame</span>(pressure)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>   temperature pressure
