@@ -4,7 +4,10 @@ project:
     
 website:
   title: "Aulas FIP606"
+  favicon: foto.jpg
   navbar:
+    pinned: true
+    logo: logo.jpg
     left:
       - text: Básico do R
         menu:
@@ -39,10 +42,17 @@ website:
         menu:
           - href: Aula11.qmd
             text: Elaboração de mapas
-
+    right: 
+      - icon: github
+        href: https://github.com/fecorbelli
+      - icon: instagram
+        href: https://www.instagram.com/fecorbelli/
+        
 format:
   html:
-    theme: superhero
+    theme: 
+      light: flatly
+      dark: darkly
     css: styles.css
     toc: true
 

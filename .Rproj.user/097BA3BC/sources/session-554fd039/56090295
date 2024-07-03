@@ -3,7 +3,7 @@
     "path": "~/GitHub/AulasFIP606/_quarto.yml",
     "project_path": "_quarto.yml",
     "type": "yaml",
-    "hash": "2051553833",
+    "hash": "850178337",
     "contents": "",
     "dirty": false,
     "created": 1720003907785.0,
@@ -12,15 +12,15 @@
     "properties": {
         "source_window_id": "",
         "Source": "Source",
-        "cursorPosition": "39,19",
-        "scrollLine": "27"
+        "cursorPosition": "49,8",
+        "scrollLine": "36"
     },
     "folds": "",
-    "lastKnownWriteTime": 1720007904,
+    "lastKnownWriteTime": 1720026981,
     "encoding": "UTF-8",
     "collab_server": "",
     "source_window": "",
-    "last_content_update": 1720007904699,
+    "last_content_update": 1720026981513,
     "read_only": false,
     "read_only_alternatives": []
 }
