@@ -3,7 +3,7 @@
     "path": "~/GitHub/AulasFIP606/index.qmd",
     "project_path": "index.qmd",
     "type": "quarto_markdown",
-    "hash": "406056639",
+    "hash": "4049333528",
     "contents": "",
     "dirty": false,
     "created": 1720024677378.0,
@@ -16,16 +16,16 @@
         "Source": "Source",
         "docOutlineVisible": "1",
         "rmdVisualCollapsedChunks": "",
-        "cursorPosition": "5,14",
+        "cursorPosition": "10,49",
         "scrollLine": "0",
         "rmdVisualModeLocation": "101:0"
     },
     "folds": "",
-    "lastKnownWriteTime": 1720026985,
+    "lastKnownWriteTime": 1720027704,
     "encoding": "UTF-8",
     "collab_server": "",
     "source_window": "",
-    "last_content_update": 1720026985261,
+    "last_content_update": 1720027704821,
     "read_only": false,
     "read_only_alternatives": []
 }

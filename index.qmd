@@ -3,7 +3,12 @@ title: "Bem-vindo ao meu website!"
 about:
   template: jolla
   id: about-block
-  image: foto1.jpg
+  image: foto2.jpg
+  links: 
+    - icon: github
+      href: https://github.com/fecorbelli
+    - icon: instagram
+      href: https://www.instagram.com/fecorbelli/
 ---
 
 **Sobre mim**
