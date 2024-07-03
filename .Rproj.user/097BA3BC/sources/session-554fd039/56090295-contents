@@ -8,36 +8,36 @@ website:
     left:
       - text: Básico do R
         menu:
-          - href: aula1.qmd
+          - href: Aula1.qmd
             text: Introdução ao RStudio
-          - href: aula2.qmd
+          - href: Aula2.qmd
             text: Importação de arquivos
         
       - text: Gráficos em R
         menu:
-          - href: aula3.qmd
+          - href: Aula3.qmd
             text: Visualização de dados em GGPLOT
-          - href: aula4.qmd
+          - href: Aula4.qmd
             text: Barra de erro
-          - href: aula5.qmd
+          - href: Aula5.qmd
             text: Exemplo de análise exploratória
         
       - text: Estatística em R
         menu:
-          - href: aula6.qmd
+          - href: Aula6.qmd
             text: Estatística inferencial
-          - href: aula7.qmd
+          - href: Aula7.qmd
             text: Transformações e anova fatorial
-          - href: aula8.qmd
+          - href: Aula8.qmd
             text: ANOVA em blocos e AUDPC        
-          - href: aula9.qmd
+          - href: Aula9.qmd
             text: Regressão linear
-          - href: aula10.qmd
+          - href: Aula10.qmd
             text: Correlação
 
       - text: Mapas em R
         menu:
-          - href: aula11.qmd
+          - href: Aula11.qmd
             text: Elaboração de mapas
 
 format:
